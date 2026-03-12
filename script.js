@@ -806,3 +806,34 @@ function showPreview(button) {
     
     previewContainer.classList.add('active');
 }
+
+// Функция для запроса полноэкранного режима
+function requestFullScreen() {
+    const elem = document.documentElement;
+    
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+        elem.msRequestFullscreen();
+    }
+}
+
+// Запрашиваем при клике или касании
+document.addEventListener('touchstart', function() {
+    requestFullScreen();
+}, { once: true });
+
+document.addEventListener('click', function() {
+    requestFullScreen();
+}, { once: true });
+
+// Проверка ориентации при загрузке
+window.addEventListener('load', function() {
+    if (screen.orientation) {
+        screen.orientation.lock('landscape').catch(function(e) {
+            console.log('Не удалось заблокировать ориентацию');
+        });
+    }
+});

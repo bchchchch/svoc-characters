@@ -1,40 +1,53 @@
-/* ===== ПРИНУДИТЕЛЬНАЯ ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ ===== */
-html, body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: fixed;
-    margin: 0;
-    padding: 0;
-}
-
-/* Запрещаем вертикальную ориентацию */
-@media (orientation: portrait) {
-    body::before {
-        content: "Пожалуйста, поверните устройство горизонтально";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        color: white;
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        z-index: 999999;
+/* ===== МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ ВЕРСИЯ ===== */
+@media (max-width: 1024px) and (orientation: landscape) {
+    /* Просто показываем ПК версию без изменений */
+    body {
+        overflow: hidden;
     }
     
-    /* Прячем весь сайт в портретном режиме */
-    .frame-container,
-    .background,
-    .overlay,
-    .preview-container,
-    .cards-container {
+    /* Убираем скроллы */
+    .frame-content {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Немного увеличиваем кликабельные элементы */
+    .character-button {
+        min-height: 44px;
+    }
+    
+    .header-link, .card-link-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Вертикальная ориентация - показываем сообщение */
+@media (orientation: portrait) {
+    .orientation-message {
+        display: flex !important;
+    }
+    
+    body > *:not(.orientation-message) {
         display: none !important;
     }
+}
+
+.orientation-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999999;
+    text-align: center;
+    padding: 20px;
 }
 
 
@@ -1670,3 +1683,33 @@ body {
 }
 
 
+/* Масштабирование для мобильных в горизонтальной ориентации */
+@media (max-width: 1024px) and (orientation: landscape) {
+    html {
+        transform: scale(0.8);
+        transform-origin: top left;
+        width: 125%;
+        height: 125%;
+    }
+    
+    body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    /* Фиксируем размеры для всех элементов */
+    .frame-container {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+    
+    /* Увеличиваем шрифты и элементы */
+    .character-button {
+        transform: scale(0.9);
+    }
+    
+    .button-text {
+        font-size: 14px;
+    }
+}
