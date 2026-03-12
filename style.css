@@ -1629,131 +1629,132 @@ body {
 }
 
 
-/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ (ПРОСТАЯ И РАБОЧАЯ) ===== */
 @media (max-width: 768px) {
     
-    /* 1. ПОЛНОСТЬЮ УБИРАЕМ РАМКУ */
-    .frame-left, .frame-right, .frame-bottom,
-    .corner-left, .corner-right, .rail-container {
-        display: none !important;
+    /* ПОЛНОСТЬЮ СБРАСЫВАЕМ ВСЕ СТИЛИ ДЛЯ ТЕЛЕФОНА */
+    .frame-container, .frame-header, .frame-left, .frame-right, 
+    .frame-bottom, .corner-left, .corner-right, .rail-container,
+    .header-corner-left, .header-corner-right, .header-center {
+        all: initial !important;
     }
     
-    .frame-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: none;
-    }
-    
-    /* 2. ПРОСТАЯ ШАПКА */
+    /* НОВАЯ ПРОСТАЯ ШАПКА */
     .frame-header {
-        position: relative;
-        height: 60px;
-        background: #2a1a0a;  /* Темный фон вместо картинки */
-        border-bottom: 2px solid #ffd700;
-    }
-    
-    .header-corner-left,
-    .header-corner-right,
-    .header-center {
-        display: none;  /* Прячем тайлы шапки */
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 60px !important;
+        background-color: #2a1a0a !important;
+        border-bottom: 2px solid #ffd700 !important;
+        z-index: 1000 !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
     }
     
     .header-content {
-        position: relative;
-        padding: 0 10px;
-        height: 60px;
+        display: flex !important;
+        width: 100% !important;
+        height: 100% !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
     }
     
     .logo img {
-        height: 40px;
+        height: 40px !important;
+        width: auto !important;
     }
     
     .frame-header h1 {
-        font-size: 16px;
-        color: #ffd700;
-        margin: 0 5px;
+        display: none !important; /* Прячем название на телефоне */
+    }
+    
+    .header-nav {
+        display: flex !important;
+        gap: 5px !important;
     }
     
     .header-link {
-        width: 45px;
+        width: 45px !important;
+        display: block !important;
     }
     
     .header-link span {
-        font-size: 10px;
+        font-size: 10px !important;
     }
     
-    /* 3. ПОИСК */
+    /* ПОИСК */
     .search-container {
-        width: 180px;
-        margin-right: 5px;
+        width: 150px !important;
+        margin: 0 !important;
     }
     
     .search-input {
-        height: 35px;
-        font-size: 12px;
-        padding: 5px 10px;
+        height: 35px !important;
+        font-size: 12px !important;
+        padding: 5px 10px !important;
     }
     
-    .search-results {
-        max-height: 200px;
-        font-size: 12px;
-    }
-    
-    /* 4. КНОПКИ В ДВЕ КОЛОНКИ */
+    /* КОНТЕЙНЕР КОНТЕНТА */
     .frame-content {
-        position: relative;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 10px;
-        overflow-y: auto;
+        position: fixed !important;
+        top: 60px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 60px) !important;
+        overflow-y: auto !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
     }
     
+    /* КНОПКИ */
     .left-column {
         width: 100% !important;
-        padding: 0;
+        padding: 0 !important;
     }
     
     .buttons-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
     }
     
     .character-button {
         margin: 0 !important;
         max-width: none !important;
-        width: 100%;
-    }
-    
-    .character-button:hover {
-        transform: none;
+        width: 100% !important;
     }
     
     .button-text {
-        font-size: 12px;
+        font-size: 12px !important;
     }
     
     .button-emoji {
-        font-size: 16px;
-        margin-right: 3px;
+        font-size: 16px !important;
     }
     
-    /* 5. ПРЕВЬЮ ПОРТРЕТОВ */
+    /* ПРЕВЬЮ ПОРТРЕТОВ */
     .preview-container {
+        position: fixed !important;
+        top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
-        min-width: 280px;
+        width: 90% !important;
+        max-width: 300px !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+        z-index: 2000 !important;
     }
     
     .portraits-row {
+        display: flex !important;
         justify-content: center !important;
-        gap: 8px;
-        padding-left: 0 !important;
+        gap: 10px !important;
+        flex-wrap: wrap !important;
     }
     
     .portrait-item {
@@ -1761,50 +1762,55 @@ body {
     }
     
     .preview-portrait {
-        width: 80px;
-        height: 80px;
-        border-width: 2px;
+        width: 80px !important;
+        height: 80px !important;
+        border: 2px solid #ffd700 !important;
     }
     
     .name-plate img {
-        width: 70px;
+        width: 70px !important;
     }
     
     .name-text {
-        font-size: 10px;
+        font-size: 10px !important;
     }
     
-    /* 6. КАРТОЧКА */
+    /* КАРТОЧКА */
     .cards-container {
-        align-items: flex-start;
-        padding-top: 20px;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 3000 !important;
+        background: rgba(0, 0, 0, 0.8) !important;
     }
     
     .character-card {
-        width: 95% !important;
-        max-width: none !important;
-        background: rgba(0, 0, 0, 0.9);
-        border-radius: 15px;
-        padding: 15px;
+        width: 90% !important;
+        max-width: 350px !important;
+        background: #1a1a1a !important;
+        border-radius: 15px !important;
+        padding: 20px !important;
+        position: relative !important;
     }
     
-    /* Прячем старые элементы */
+    /* Прячем все лишнее */
     .character-card .parallax-container,
     .character-card .name-tags,
-    .character-card .card-background {
+    .character-card .card-background,
+    .character-card .name-bg {
         display: none !important;
     }
     
-    /* Текстовая часть на всю ширину */
+    /* Заголовок */
     .character-card .card-text-content {
         position: relative !important;
         width: 100% !important;
         padding: 0 !important;
-    }
-    
-    /* Заголовок */
-    .character-card .name-bg {
-        display: none !important;
     }
     
     .character-card .name-bg-text {
@@ -1812,88 +1818,68 @@ body {
         top: 0 !important;
         left: 0 !important;
         transform: none !important;
-        color: #ffd700;
-        font-size: 20px;
-        text-align: center;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+        color: #ffd700 !important;
+        font-size: 20px !important;
+        text-align: center !important;
+        margin-bottom: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
     }
     
     .character-card .name-emoji {
-        font-size: 28px;
+        font-size: 24px !important;
     }
     
     /* Описание */
     .character-card .character-description {
         color: white !important;
-        max-height: 200px;
-        padding: 10px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        margin-bottom: 15px;
-        font-size: 13px;
-        line-height: 1.4;
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 15px !important;
+        padding: 10px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+        max-height: 200px !important;
+        overflow-y: auto !important;
     }
     
     /* Кнопки */
     .character-card .links-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-top: 10px;
-    }
-    
-    .character-card .links-left,
-    .character-card .links-right {
-        width: 100%;
-        gap: 8px;
-    }
-    
-    .character-card .links-right {
-        align-items: stretch !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
     }
     
     .character-card .card-link-button {
         width: 100% !important;
-        max-width: none !important;
         margin: 0 !important;
     }
     
-    .character-card .card-link-button:hover {
-        transform: none;
-    }
-    
     .character-card .link-text {
-        font-size: 12px;
-        color: white;
+        font-size: 12px !important;
     }
     
     /* Кнопка закрытия */
     .character-card .close-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        bottom: auto;
+        position: absolute !important;
+        top: 10px !important;
+        right: 10px !important;
+        width: 30px !important;
+        height: 30px !important;
+        cursor: pointer !important;
     }
 }
 
-/* Для очень маленьких экранов */
+/* ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ */
 @media (max-width: 480px) {
     .buttons-container {
-        grid-template-columns: 1fr;  /* Одна колонка */
-    }
-    
-    .frame-header h1 {
-        display: none;  /* Прячем название на очень маленьких */
+        grid-template-columns: 1fr !important;
     }
     
     .search-container {
-        width: 140px;
+        width: 120px !important;
     }
     
     .portrait-item {
@@ -1901,16 +1887,7 @@ body {
     }
     
     .preview-portrait {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .name-plate img {
-        width: 60px;
-    }
-    
-    .character-card .links-container {
-        grid-template-columns: 1fr;  /* Кнопки в столбик */
+        width: 70px !important;
+        height: 70px !important;
     }
 }
-
