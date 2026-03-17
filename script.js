@@ -146,34 +146,7 @@ function generateSite() {
         card.className = `character-card ${data.cardStyle || 'style1'}`;
         card.id = `${charKey}-card`;
         
-        // Проверяем, мобильное ли устройство
-        const isMobile = window.innerWidth <= 768;
-        
-        if (isMobile) {
-            // МОБИЛЬНАЯ КАРТОЧКА
-            card.innerHTML = `
-                <img src="images/card_mob.png" alt="Карточка" class="card-background-mobile">
-                
-                <div class="card-text-content-mobile">
-                    <div class="mobile-title">
-                        <span class="mobile-emoji">${data.emoji || ''}</span>
-                        <span>${data.locationName}</span>
-                    </div>
-                    
-                    <div class="mobile-description">
-                        ${data.description.split('\n').map(p => `<p>${p}</p>`).join('')}
-                    </div>
-                    
-                    <div class="mobile-links">
-                        <a href="${data.links.album}" target="_blank" class="mobile-link">Альбом</a>
-                        <a href="${data.links.discussion}" target="_blank" class="mobile-link">Обсуждение</a>
-                        <a href="${data.links.lore}" target="_blank" class="mobile-link">Лор</a>
-                    </div>
-                </div>
-                
-                <img src="images/back.png" alt="Закрыть" class="close-button">
-            `;
-        } else {
+        const isMobile = false;
             // ПК КАРТОЧКА
             let tagsHTML = '';
             data.parallaxNames.forEach((name, index) => {
@@ -231,7 +204,6 @@ function generateSite() {
                 
                 <img src="images/back.png" alt="Закрыть" class="close-button">
             `;
-        }
         
         cardsContainer.appendChild(card);
     }
@@ -763,14 +735,12 @@ function initSearch() {
     
     console.log('Поиск готов к работе');
 }
-
-// Заменяем старую инициализацию
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM загружен');
     generateSite();
     setTimeout(() => {
         initScrollbar();
-        initSearch(); // Одна функция вместо двух
+        initSearch(); 
         console.log('Все функции инициализированы');
     }, 500);
 });
