@@ -1987,4 +1987,104 @@ body {
     }
 }
 
-
+/* ===== МОБИЛЬНАЯ КАРТОЧКА ===== */
+@media (max-width: 768px) {
+    /* Базовые стили для мобильной версии */
+    .frame-content {
+        top: 60px !important;
+        padding: 10px !important;
+    }
+    
+    .left-column {
+        width: 100% !important;
+    }
+    
+    .buttons-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .character-button {
+        margin: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+    }
+    
+    /* Стили для мобильной карточки */
+    .card-background-mobile {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 15px !important;
+        display: block !important;
+    }
+    
+    .card-text-content-mobile {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding: 30px 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        color: white !important;
+    }
+    
+    .mobile-title {
+        font-size: 24px !important;
+        color: #ffd700 !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+    }
+    
+    .mobile-emoji {
+        font-size: 28px !important;
+    }
+    
+    .mobile-description {
+        flex: 1 !important;
+        overflow-y: auto !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        color: #f0f0f0 !important;
+        margin-bottom: 15px !important;
+        padding: 10px !important;
+        background: rgba(0, 0, 0, 0.3) !important;
+        border-radius: 8px !important;
+        max-height: 200px !important;
+    }
+    
+    .mobile-links {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        margin-top: auto !important;
+    }
+    
+    .mobile-link {
+        background: #330000 !important;
+        color: #ffd700 !important;
+        text-decoration: none !important;
+        padding: 10px 20px !important;
+        border-radius: 25px !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+        border: 2px solid #ffd700 !important;
+        flex: 1 1 auto !important;
+        min-width: 100px !important;
+        text-align: center !important;
+    }
+    
+    .close-button {
+        width: 40px !important;
+        height: 40px !important;
+        top: -10px !important;
+        right: -10px !important;
+    }
+}
