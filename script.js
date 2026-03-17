@@ -141,67 +141,97 @@ function generateSite() {
         
         buttonsContainer.appendChild(button);
         
-        // СОЗДАЕМ КАРТОЧКУ
+                // СОЗДАЕМ КАРТОЧКУ
         const card = document.createElement('div');
         card.className = `character-card ${data.cardStyle || 'style1'}`;
         card.id = `${charKey}-card`;
         
-        let tagsHTML = '';
-        data.parallaxNames.forEach((name, index) => {
-            const position = data.parallaxPositions[index] || 'center';
-            tagsHTML += `
-                <div class="name-tag ${position}-tag">
-                    <img src="images/char_name.png" alt="Рамка" class="tag-bg">
-                    <span class="tag-text">${name}</span>
-                </div>
-            `;
-        });
+        // Проверяем, мобильное ли устройство
+        const isMobile = window.innerWidth <= 768;
         
-        card.innerHTML = `
-            <img src="images/card_1.png" alt="Карточка" class="card-background">
-            
-            <div class="parallax-container">
-                <img src="${data.parallaxImg || 'images/mark.jpg'}" alt="Пейзаж" class="parallax-image" id="parallax-${charKey}">
-            </div>
-            
-            <div class="name-tags">
-                ${tagsHTML}
-            </div>
-            
-            <div class="card-text-content">
-                <div class="name-with-bg">
-                    <img src="images/setting_name.png" alt="Рамка" class="name-bg">
-                    <span class="name-bg-text">
-                        <span class="name-emoji">${data.emoji || ''}</span>
-                        <span class="name-location">${data.locationName}</span>
-                    </span>
+        if (isMobile) {
+            // МОБИЛЬНАЯ КАРТОЧКА
+            card.innerHTML = `
+                <img src="images/card_mob.png" alt="Карточка" class="card-background-mobile">
+                
+                <div class="card-text-content-mobile">
+                    <div class="mobile-title">
+                        <span class="mobile-emoji">${data.emoji || ''}</span>
+                        <span>${data.locationName}</span>
+                    </div>
+                    
+                    <div class="mobile-description">
+                        ${data.description.split('\n').map(p => `<p>${p}</p>`).join('')}
+                    </div>
+                    
+                    <div class="mobile-links">
+                        <a href="${data.links.album}" target="_blank" class="mobile-link">Альбом</a>
+                        <a href="${data.links.discussion}" target="_blank" class="mobile-link">Обсуждение</a>
+                        <a href="${data.links.lore}" target="_blank" class="mobile-link">Лор</a>
+                    </div>
                 </div>
                 
-                <div class="character-description">
-                    ${data.description.split('\n').map(p => `<p>${p}</p>`).join('')}
+                <img src="images/back.png" alt="Закрыть" class="close-button">
+            `;
+        } else {
+            // ПК КАРТОЧКА
+            let tagsHTML = '';
+            data.parallaxNames.forEach((name, index) => {
+                const position = data.parallaxPositions[index] || 'center';
+                tagsHTML += `
+                    <div class="name-tag ${position}-tag">
+                        <img src="images/char_name.png" alt="Рамка" class="tag-bg">
+                        <span class="tag-text">${name}</span>
+                    </div>
+                `;
+            });
+            
+            card.innerHTML = `
+                <img src="images/card_1.png" alt="Карточка" class="card-background">
+                
+                <div class="parallax-container">
+                    <img src="${data.parallaxImg || 'images/mark.jpg'}" alt="Пейзаж" class="parallax-image" id="parallax-${charKey}">
                 </div>
                 
-                <div class="links-container">
-                    <a href="${data.links.album}" target="_blank" class="card-link-button">
-                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-                        <span class="link-text">Альбом</span>
-                    </a>
-                    <a href="${data.links.discussion}" target="_blank" class="card-link-button">
-                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-                        <span class="link-text">Обсуждение</span>
-                    </a>
-                    <a href="${data.links.lore}" target="_blank" class="card-link-button">
-                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-                        <span class="link-text">Лорная статья</span>
-                    </a>
+                <div class="name-tags">
+                    ${tagsHTML}
                 </div>
-            </div>
-            
-            <img src="images/back.png" alt="Закрыть" class="close-button">
-        `;
+                
+                <div class="card-text-content">
+                    <div class="name-with-bg">
+                        <img src="images/setting_name.png" alt="Рамка" class="name-bg">
+                        <span class="name-bg-text">
+                            <span class="name-emoji">${data.emoji || ''}</span>
+                            <span class="name-location">${data.locationName}</span>
+                        </span>
+                    </div>
+                    
+                    <div class="character-description">
+                        ${data.description.split('\n').map(p => `<p>${p}</p>`).join('')}
+                    </div>
+                    
+                    <div class="links-container">
+                        <a href="${data.links.album}" target="_blank" class="card-link-button">
+                            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                            <span class="link-text">Альбом</span>
+                        </a>
+                        <a href="${data.links.discussion}" target="_blank" class="card-link-button">
+                            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                            <span class="link-text">Обсуждение</span>
+                        </a>
+                        <a href="${data.links.lore}" target="_blank" class="card-link-button">
+                            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                            <span class="link-text">Лорная статья</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <img src="images/back.png" alt="Закрыть" class="close-button">
+            `;
+        }
         
         cardsContainer.appendChild(card);
     }
@@ -806,34 +836,3 @@ function showPreview(button) {
     
     previewContainer.classList.add('active');
 }
-
-// Функция для запроса полноэкранного режима
-function requestFullScreen() {
-    const elem = document.documentElement;
-    
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE/Edge */
-        elem.msRequestFullscreen();
-    }
-}
-
-// Запрашиваем при клике или касании
-document.addEventListener('touchstart', function() {
-    requestFullScreen();
-}, { once: true });
-
-document.addEventListener('click', function() {
-    requestFullScreen();
-}, { once: true });
-
-// Проверка ориентации при загрузке
-window.addEventListener('load', function() {
-    if (screen.orientation) {
-        screen.orientation.lock('landscape').catch(function(e) {
-            console.log('Не удалось заблокировать ориентацию');
-        });
-    }
-});
