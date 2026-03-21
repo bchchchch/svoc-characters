@@ -8,6 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
+    <!-- VK MINI APP SUPPORT (работает и в браузере) -->
+<script>
+    // Функция для открытия ссылок
+    // В VK: открывает внутри приложения
+    // В браузере: обычное _blank
+    window.openVKLink = function(url) {
+        if (window.VKWebAppOpenURL) {
+            // Мы внутри ВКонтакте — открываем без выхода
+            window.VKWebAppOpenURL({ url: url });
+        } else {
+            // Мы в обычном браузере — стандартное поведение
+            window.open(url, '_blank');
+        }
+    };
+    
+    // Инициализация мини-приложения
+    // В браузере просто ничего не делает
+    window.addEventListener('load', function() {
+        if (window.VKWebAppInit) {
+            window.VKWebAppInit({});
+            console.log('VK Mini App mode: ON');
+        } else {
+            console.log('VK Mini App mode: OFF (browser mode)');
+        }
+    });
+</script>
     <div class="orientation-message">
     <div>Пожалуйста, поверните устройство</div>
     <div style="font-size: 16px; margin-top: 10px;">Сайт работает в горизонтальном режиме</div>
