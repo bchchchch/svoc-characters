@@ -1,5 +1,88 @@
-/* ===== БАЗОВЫЕ СТИЛИ ===== */
+/* ===== МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ ВЕРСИЯ ===== */
+@media (max-width: 1024px) and (orientation: landscape) {
+    /* Просто показываем ПК версию без изменений */
+    body {
+        overflow: hidden;
+    }
+    
+    /* Убираем скроллы */
+    .frame-content {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Немного увеличиваем кликабельные элементы */
+    .character-button {
+        min-height: 44px;
+    }
+    
+    .header-link, .card-link-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Вертикальная ориентация - показываем сообщение */
+@media (orientation: portrait) {
+    .orientation-message {
+        display: flex !important;
+    }
+    
+    body > *:not(.orientation-message) {
+        display: none !important;
+    }
+}
+
+.orientation-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999999;
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+/* Кастомный курсор для всего сайта */
 * {
+    cursor: url('images/gui/cursor.png') 1 1, auto !important;
+}
+
+/* Для всех кликабельных элементов - тот же курсор */
+a, button, .character-button, .card-link-button, 
+.close-button, .rail-thumb, .name-tag, .portrait-item,
+.name-plate, input, select, textarea, [role="button"] {
+    cursor: url('images/gui/cursor.png') 1 1, pointer !important;
+}
+
+/* Для активного перетаскивания */
+.rail-thumb:active, .dragging, :active {
+    cursor: url('images/gui/cursor.png') 1 1, grabbing !important;
+}
+
+/* Для текстовых полей - можно оставить стандартный или тоже кастомный */
+input, textarea {
+    cursor: url('images/gui/cursor.png') 1 1, text !important;
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('images/rudew.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'MyCustomFont', Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,33 +91,28 @@
 body {
     height: 100vh;
     overflow: hidden;
-    font-family: 'MyCustomFont', Arial, sans-serif;
+    cursor: url('images/gui/cursor.png') 1 1, auto;
 }
 
-/* Кастомный курсор */
-* {
-    cursor: url('images/gui/cursor.png') 1 1, auto !important;
-}
 
-a, button, .character-button, .card-link-button, 
-.close-button, .rail-thumb, .name-tag, .portrait-item,
-.name-plate, input {
-    cursor: url('images/gui/cursor.png') 1 1, pointer !important;
-}
-
-/* Шрифты */
-@font-face {
-    font-family: 'MyCustomFont';
-    src: url('images/rudew.ttf') format('truetype');
-    font-weight: normal;
-}
-
+/* Подключение шрифта для описаний */
 @font-face {
     font-family: 'SevenExEightPixel';
     src: url('images/SevenExEightPixel-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-/* Фон */
+/* Применяем шрифт только к описаниям */
+.character-description,
+.character-description p {
+    font-family: 'SevenExEightPixel', monospace !important;
+    /* Можно также настроить размер, если нужно */
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Фон сайта */
 .background {
     position: fixed;
     top: 0;
@@ -47,9 +125,8 @@ a, button, .character-button, .card-link-button,
     z-index: 1;
 }
 
-/* Затемнение */
 .overlay {
-    position: absolute;
+    position: absolute;  /* было fixed, стало absolute */
     top: 0;
     left: 0;
     width: 100%;
@@ -57,9 +134,9 @@ a, button, .character-button, .card-link-button,
     background-color: rgba(0, 0, 0, 0.8);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.25s ease;
-    z-index: 50;
-    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 50; /* выше контента, но ниже карточек */
+    pointer-events: none; /* НЕ БЛОКИРУЕТ КЛИКИ */
 }
 
 .overlay.active {
@@ -67,131 +144,194 @@ a, button, .character-button, .card-link-button,
     visibility: visible;
 }
 
-/* РАМКА */
-.frame-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+/* ===== РАМКА ИНТЕРФЕЙСА ===== */
+.frame-content {
+    position: absolute;
+    top: 120px;
+    left: 27px;
+    right: 27px;
+    bottom: 27px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    pointer-events: auto;
+    z-index: 15;
+    scrollbar-width: none;
 }
 
-/* Шапка */
+/* ===== НОВАЯ ШАПКА С УГОЛКАМИ ===== */
 .frame-header {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 120px;
-    background-image: url('images/gui/head.png');
-    background-size: cover;
-    background-position: center;
     z-index: 30;
+    pointer-events: auto;
+    background-image: url('images/gui/head.png');
+    background-repeat: repeat-x;
+    background-size: 10px 120px;
+    background-position: center top;
 }
 
-.header-content {
+/* Левый уголок поверх шапки */
+.frame-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 120px;
+    background-image: url('images/gui/head_corner_left.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left top;
+    z-index: 31;
+    pointer-events: none;
+}
+
+/* Правый уголок поверх шапки */
+.frame-header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 120px;
+    background-image: url('images/gui/head_corner_right.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right top;
+    z-index: 31;
+    pointer-events: none;
+}
+
+/* Контент шапки */
+.frame-header .header-content {
+    position: relative;
+    z-index: 32;
     max-width: 1400px;
     margin: 0 auto;
     height: 100%;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    padding: 0 60px;
+    padding: 0 70px;
     gap: 30px;
 }
 
-.logo img {
-    height: 60px;
-    width: auto;
+/* Логотип */
+.logo {
+    flex-shrink: 0;
+    margin-left: -20px;  /* Сдвиг влево */
 }
 
+.logo img {
+    height: 60px;  /* Уменьшенный логотип */
+    width: auto;
+    transition: transform 0.2s ease;
+}
+
+
+/* Заголовок */
 .frame-header h1 {
+    font-family: 'MyCustomFont', Arial, sans-serif;
     font-size: 30px;
+    font-weight: normal;
     color: #ffffff;
+    margin: 0;
     white-space: nowrap;
 }
 
+/* Навигация справа */
 .header-nav {
     display: flex;
     gap: 15px;
+    align-items: center;
+    flex-shrink: 0;
     margin-left: auto;
 }
 
-.header-text-link {
-    color: #330000;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 8px 15px;
-    transition: all 0.2s;
-}
-
-.header-text-link:hover {
-    color: #ffffff;
-}
-
-/* Рамки */
-.frame-left, .frame-right, .frame-bottom {
-    position: absolute;
-    background-repeat: repeat;
-    pointer-events: none;
-    z-index: 11;
-}
-
+/* Левая боковая рамка */
 .frame-left {
+    position: absolute;
     left: 0;
     top: 0;
     bottom: 27px;
     width: 27px;
     background-image: url('images/gui/border_left.png');
     background-repeat: repeat-y;
+    background-position: left;
+    z-index: 11;
+    pointer-events: none;
 }
 
+/* Правая боковая рамка */
 .frame-right {
+    position: absolute;
     right: 0;
     top: 0;
     bottom: 27px;
     width: 27px;
     background-image: url('images/gui/border_right.png');
     background-repeat: repeat-y;
+    background-position: right;
+    z-index: 11;
+    pointer-events: none;
 }
 
+/* Нижняя рамка (подвал) */
 .frame-bottom {
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 27px;
     background-image: url('images/gui/border_bottom.png');
     background-repeat: repeat-x;
+    background-position: bottom;
+    z-index: 11;
+    pointer-events: none;
 }
 
-.corner-left, .corner-right {
+/* Левый нижний уголок */
+.corner-left {
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 36px;
     height: 36px;
+    background-image: url('images/gui/corner_left.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
     z-index: 12;
     pointer-events: none;
 }
 
-.corner-left {
-    left: 0;
-    background-image: url('images/gui/corner_left.png');
-    background-size: contain;
-}
-
+/* Правый нижний уголок */
 .corner-right {
+    position: absolute;
+    bottom: 0;
     right: 0;
+    width: 36px;
+    height: 36px;
     background-image: url('images/gui/corner_right.png');
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    z-index: 12;
+    pointer-events: none;
 }
 
-/* Рельса */
+/* ===== РЕЛЬСА И ПОЛЗУНОК ===== */
 .rail-container {
     position: absolute;
-    left: 27px;
-    top: 120px;
-    bottom: 27px;
+    left: 27px; /* плотно к левой рамке */
+    top: 120px; /* сразу под шапкой */
+    bottom: 27px; /* до подвала */
     width: 36px;
-    z-index: 20;
+    z-index: 20; /* выше рамки */
     pointer-events: none;
 }
 
@@ -201,27 +341,33 @@ a, button, .character-button, .card-link-button,
     height: 100%;
     background-image: url('images/gui/slider.png');
     background-repeat: repeat-y;
+    background-position: center;
     pointer-events: auto;
 }
 
 .rail-thumb {
     position: absolute;
-    left: -8px;
+    left: -8px; /* центрирование с учетом ширины */
     width: 52px;
     height: 72px;
-    cursor: grab;
+    cursor: url('images/gui/cursor.png') 1 1, grab;
     pointer-events: auto;
     transition: top 0.02s ease;
-    z-index: 21;
+    z-index: 21; /* выше всего */
+}
+
+.rail-thumb:active {
+    cursor: url('images/gui/cursor.png') 1 1, grabbing;
 }
 
 .rail-thumb img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    pointer-events: none;
 }
 
-/* Контент */
+/* ===== КОНТЕНТ ВНУТРИ РАМКИ ===== */
 .frame-content {
     position: absolute;
     top: 120px;
@@ -229,8 +375,10 @@ a, button, .character-button, .card-link-button,
     right: 27px;
     bottom: 27px;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px;
-    z-index: 15;
+    pointer-events: auto; /* Контент кликабелен */
+    z-index: 15; /* Выше рамки, но ниже ползунка */
     scrollbar-width: none;
 }
 
@@ -240,9 +388,28 @@ a, button, .character-button, .card-link-button,
 
 /* Левая колонка */
 .left-column {
+    position: relative;
     width: 33.333%;
+    height: auto;
     float: left;
-    padding: 30px;
+    padding: 30px 30px 30px 50px;
+    
+    /* Кастомный скроллбар */
+    scrollbar-width: thin;
+    scrollbar-color: #888 #333;
+}
+
+.left-column::-webkit-scrollbar {
+    width: 8px;
+}
+
+.left-column::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.left-column::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
 }
 
 .buttons-container {
@@ -253,18 +420,26 @@ a, button, .character-button, .card-link-button,
 
 /* Кнопка */
 .character-button {
+    margin: 0 0 0 20px;
     position: relative;
     width: 100%;
     max-width: 350px;
-    cursor: pointer;
-    transition: transform 0.25s;
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
+    transition: transform 0.25s ease;
     animation: slideIn 0.35s ease forwards;
     opacity: 0;
     transform: translateX(-30px);
 }
 
+.character-button:nth-child(1) { animation-delay: 0.05s; }
+.character-button:nth-child(2) { animation-delay: 0.1s; }
+.character-button:nth-child(3) { animation-delay: 0.15s; }
+
 @keyframes slideIn {
-    to { opacity: 1; transform: translateX(0); }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .character-button:hover {
@@ -273,7 +448,9 @@ a, button, .character-button, .card-link-button,
 
 .character-button img {
     width: 100%;
+    height: auto;
     display: block;
+    transition: opacity 0.2s ease;
 }
 
 .button-hover {
@@ -283,8 +460,13 @@ a, button, .character-button, .card-link-button,
     opacity: 0;
 }
 
-.character-button:hover .button-default { opacity: 0; }
-.character-button:hover .button-hover { opacity: 1; }
+.character-button:hover .button-default {
+    opacity: 0;
+}
+
+.character-button:hover .button-hover {
+    opacity: 1;
+}
 
 .button-text {
     position: absolute;
@@ -293,26 +475,26 @@ a, button, .character-button, .card-link-button,
     transform: translate(-50%, -50%);
     color: #330000;
     font-size: 18px;
+    font-weight: normal;
     white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    pointer-events: none;
 }
 
-.button-emoji { font-size: 24px; }
-
-/* Превью */
+/* ===== ПРЕВЬЮ ПРИ НАВЕДЕНИИ ===== */
+/* ===== ПРЕВЬЮ ПРИ НАВЕДЕНИИ ===== */
 .preview-container {
     position: fixed;
     top: 50%;
-    left: 600px;
+    left: 600px;  /* Прижимаем к левому краю рамки */
     transform: translateY(-50%);
+    width: auto;
     min-width: 400px;
+    max-width: 900px;
     pointer-events: none;
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .preview-container.active {
@@ -320,41 +502,57 @@ a, button, .character-button, .card-link-button,
     visibility: visible;
 }
 
+/* Контейнер портретов */
 .portraits-row {
     display: flex;
-    gap: 140px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 140px;  /* Расстояние между портретами */
+    margin-bottom: 20px;
+    flex-wrap: wrap;
     padding-left: 20px;
 }
 
+/* ВСЕ ПОРТРЕТЫ ОДИНАКОВОГО РАЗМЕРА */
 .portrait-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
     animation: portraitAppear 0.3s ease-out forwards;
     opacity: 0;
     transform: translateY(15px);
+    transition: all 0.3s ease;
+    width: 200px;  /* Фиксированная ширина для всех */
 }
 
-@keyframes portraitAppear {
-    to { opacity: 1; transform: translateY(0); }
-}
-
+/* Портрет */
 .preview-portrait {
-    width: 300px;
-    height: 300px;
+    width: 300px;  /* Фиксированная ширина */
+    height: 300px;  /* Фиксированная высота */
     border-radius: 10px;
     border: 3px solid #330000;
-    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    object-fit: cover;  /* Чтобы картинка не искажалась */
 }
 
+/* Табличка с именем */
 .name-plate {
     margin-top: 8px;
     position: relative;
-    cursor: pointer;
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
+    transition: transform 0.2s ease;
 }
 
-.name-plate img { width: 180px; }
+.name-plate:hover {
+    transform: scale(1.05);
+}
+
+.name-plate img {
+    width: 180px;  /* Чуть меньше портрета */
+    height: auto;
+    display: block;
+}
 
 .name-text {
     position: absolute;
@@ -363,7 +561,76 @@ a, button, .character-button, .card-link-button,
     transform: translate(-50%, -50%);
     color: #330000;
     font-size: 16px;
+    font-weight: bold;
     white-space: nowrap;
+    letter-spacing: 1px;
+    pointer-events: none;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Анимация появления */
+@keyframes portraitAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Индивидуальные задержки */
+.portrait-item:nth-child(1) { animation-delay: 0.05s; }
+.portrait-item:nth-child(2) { animation-delay: 0.1s; }
+.portrait-item:nth-child(3) { animation-delay: 0.15s; }
+.portrait-item:nth-child(4) { animation-delay: 0.2s; }
+.portrait-item:nth-child(5) { animation-delay: 0.25s; }
+
+/* При наведении */
+.portrait-item:hover .preview-portrait {
+    transform: scale(1.05);
+    border-color: #ffd700;
+}
+
+/* Стили портрета */
+.preview-portrait {
+    border-radius: 10px;
+    border: 3px solid #330000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    object-fit: cover;
+}
+
+.portrait-item:hover .preview-portrait {
+    transform: scale(1.05);
+    border-color: #ffd700;
+}
+
+/* Табличка с именем */
+.name-plate {
+    margin-top: 8px;
+    position: relative;
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
+    transition: transform 0.2s ease;
+}
+
+.name-plate:hover {
+    transform: scale(1.05);
+}
+
+.name-plate img {
+    height: auto;
+    display: block;
+}
+
+.name-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #330000;
+    font-size: 20px;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    pointer-events: none;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 /* Карточки */
@@ -386,6 +653,7 @@ a, button, .character-button, .card-link-button,
     position: relative;
     width: 90%;
     max-width: 1100px;
+    z-index: 201;
 }
 
 .character-card.active {
@@ -393,15 +661,41 @@ a, button, .character-button, .card-link-button,
     animation: cardAppear 0.3s ease-out;
 }
 
+.character-card.closing {
+    display: block;
+    animation: cardDisappear 0.2s ease-in forwards;
+}
+
 @keyframes cardAppear {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes cardDisappear {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 }
 
 .card-background {
     width: 100%;
+    height: auto;
+    display: block;
     border-radius: 20px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 202;
 }
 
 /* Параллакс */
@@ -413,16 +707,23 @@ a, button, .character-button, .card-link-button,
     height: 100%;
     overflow: hidden;
     border-radius: 20px 0 0 20px;
+    z-index: 201;
 }
 
 .parallax-image {
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.1s;
+    object-position: center;
+    transition: transform 0.1s ease-out;
 }
 
-/* Таблички имен */
+.character-card.active:hover .parallax-image {
+    transform: scale(1.1) translate(5px, 5px);
+}
+
+/* Таблички с именами */
 .name-tags {
     position: absolute;
     top: 0;
@@ -436,18 +737,39 @@ a, button, .character-button, .card-link-button,
 .name-tag {
     position: absolute;
     pointer-events: auto;
-    cursor: pointer;
-    transition: transform 0.2s;
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
+    transition: transform 0.2s ease;
     animation: tagAppear 0.3s ease-out forwards;
     opacity: 0;
+    transform: scale(0.9);
 }
 
-.name-tag:hover { transform: scale(1.05); }
-.name-tag.left-tag { bottom: 15%; left: 15%; }
-.name-tag.right-tag { bottom: 15%; right: 12%; }
-.name-tag.center-tag { bottom: 10%; left: 37%; transform: translateX(-50%); }
+.name-tag:hover {
+    transform: scale(1.05);
+}
 
-.tag-bg { width: 150px; }
+.name-tag.left-tag {
+    bottom: 15%;
+    left: 15%;
+}
+
+.name-tag.right-tag {
+    bottom: 15%;
+    right: 12%;
+}
+
+.name-tag.center-tag {
+    bottom: 10%;
+    left: 37%;
+    transform: translateX(-50%);
+}
+
+.tag-bg {
+    width: 150px;
+    height: auto;
+    display: block;
+}
+
 .tag-text {
     position: absolute;
     top: 50%;
@@ -455,11 +777,18 @@ a, button, .character-button, .card-link-button,
     transform: translate(-50%, -50%);
     color: #330000;
     font-size: 16px;
+    font-weight: bold;
     white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    pointer-events: none;
 }
 
 @keyframes tagAppear {
-    to { opacity: 1; transform: scale(1); }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Текст справа */
@@ -470,12 +799,25 @@ a, button, .character-button, .card-link-button,
     width: 50%;
     height: 100%;
     padding: 60px 40px;
+    color: white;
     display: flex;
     flex-direction: column;
     z-index: 204;
 }
 
-.name-bg { width: 450px; }
+.name-with-bg {
+    position: relative;
+    margin-bottom: 30px;
+    width: fit-content;
+    animation: slideInRight 0.4s ease 0.05s both;
+}
+
+.name-bg {
+    width: 450px;
+    height: auto;
+    display: block;
+}
+
 .name-bg-text {
     position: absolute;
     top: 50%;
@@ -483,53 +825,106 @@ a, button, .character-button, .card-link-button,
     transform: translate(-50%, -50%);
     color: #330000;
     font-size: 28px;
+    font-weight: normal;
+    letter-spacing: 2px;
     white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
-.name-emoji { font-size: 28px; }
-
 .character-description {
-    font-family: 'SevenExEightPixel', monospace;
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.7;
     margin-bottom: 10px;
     flex-grow: 1;
     overflow-y: auto;
     padding-right: 20px;
     color: #522700;
+    animation: slideInRight 0.4s ease 0.1s both;
     max-height: 320px;
 }
 
-/* Кнопки в карточке */
+.character-description p {
+    margin-bottom: 12px;
+}
+
+.character-description::-webkit-scrollbar {
+    width: 6px;
+}
+
+.character-description::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.character-description::-webkit-scrollbar-thumb {
+    background: #330000;
+    border-radius: 10px;
+}
+
+/* Кнопки */
 .links-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+    column-gap: 5px;
     margin-top: 20px;
+    animation: slideInRight 0.4s ease 0.15s both;
+}
+
+.links-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.links-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
 }
 
 .card-link-button {
     position: relative;
     width: 180px;
-    cursor: pointer;
-    transition: transform 0.25s;
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
+    transition: transform 0.25s ease;
     text-decoration: none;
     display: block;
 }
 
-.card-link-button:hover { transform: translateX(5px); }
-.card-link-button img { width: 100%; display: block; }
+.links-right .card-link-button {
+    margin-left: auto;
+}
+
+.card-link-button:hover {
+    transform: translateX(5px);
+}
+
+.links-right .card-link-button:hover {
+    transform: translateX(-5px);
+}
+
+.card-link-button img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
 .card-link-button .button-hover {
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
 }
-.card-link-button:hover .button-default { opacity: 0; }
-.card-link-button:hover .button-hover { opacity: 1; }
+
+.card-link-button:hover .button-default {
+    opacity: 0;
+}
+
+.card-link-button:hover .button-hover {
+    opacity: 1;
+}
 
 .link-text {
     position: absolute;
@@ -538,7 +933,21 @@ a, button, .character-button, .card-link-button,
     transform: translate(-50%, -50%);
     color: #330000;
     font-size: 20px;
+    font-weight: normal;
     white-space: nowrap;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Кнопка закрытия */
@@ -547,15 +956,119 @@ a, button, .character-button, .card-link-button,
     bottom: -20px;
     right: -20px;
     width: 130px;
-    cursor: pointer;
+    height: auto;
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
     z-index: 205;
-    transition: transform 0.25s;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    animation: buttonFadeIn 0.3s ease 0.2s both;
 }
 
-.close-button:hover { transform: scale(1.1); }
+.close-button:hover {
+    transform: scale(1.1);
+}
 
-/* Стили карточек */
-.character-card.style3 .name-bg { display: none; }
+@keyframes buttonFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== ИСПРАВЛЕНИЕ ОБЫЧНЫХ СТИЛЕЙ ===== */
+
+/* СТИЛЬ 1 - обычный */
+.character-card.style1 .card-background {
+    content: url('images/card_1.png') !important;
+}
+
+.character-card.style1 .name-bg {
+    content: url('images/setting_name.png') !important;
+    display: block !important;
+}
+
+.character-card.style1 .name-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #330000;
+    font-size: 28px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.character-card.style1 .character-description {
+    color: #522700;
+}
+
+.character-card.style1 .link-text {
+    color: #330000;
+}
+
+.character-card.style1 .card-link-button .button-default {
+    content: url('images/button_normal.png');
+}
+
+.character-card.style1 .card-link-button .button-hover {
+    content: url('images/button_hover.png');
+}
+
+.character-card.style1 .name-tag .tag-bg {
+    content: url('images/char_name.png');
+    width: 170px;
+}
+
+/* СТИЛЬ 2 - обычный */
+.character-card.style2 .card-background {
+    content: url('images/card_2.png') !important;
+}
+
+.character-card.style2 .name-bg {
+    content: url('images/setting_name.png') !important;
+    display: block !important;
+}
+
+.character-card.style2 .name-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #330000;
+    font-size: 28px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.character-card.style2 .character-description {
+    color: #522700;
+}
+
+.character-card.style2 .link-text {
+    color: #330000;
+}
+
+.character-card.style2 .card-link-button .button-default {
+    content: url('images/button_normal.png');
+}
+
+.character-card.style2 .card-link-button .button-hover {
+    content: url('images/button_hover.png');
+}
+
+.character-card.style2 .name-tag .tag-bg {
+    content: url('images/char_name.png');
+    width: 170px;
+}
+/* СТИЛЬ 3 - обычный */
+.character-card.style3 .card-background {
+    content: url('images/card_3.png') !important;
+}
+
+.character-card.style3 .name-bg {
+    display: none !important;
+}
+
 .character-card.style3 .name-bg-text {
     position: relative;
     top: 0;
@@ -563,231 +1076,997 @@ a, button, .character-button, .card-link-button,
     transform: none;
     color: #ffffff;
     font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
-.character-card.style3 .character-description { color: #ffffff; }
 
-/* Поиск */
+.character-card.style3 .character-description {
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.character-card.style3 .link-text {
+    color: #ffffff;
+}
+
+.character-card.style3 .card-link-button .button-default {
+    content: url('images/button_normal_2.png');
+}
+
+.character-card.style3 .card-link-button .button-hover {
+    content: url('images/button_hover_2.png');
+}
+
+/* Таблички с именами для style3 */
+.character-card.style3 .name-tag .tag-bg {
+    content: url('images/char_name_2.png');
+    width: 170px;
+}
+
+.character-card.style3 .tag-text {
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.character-card.style3 .name-tag.left-tag {
+    bottom: 15%;
+    left: 10%;
+}
+
+.character-card.style3 .name-tag.right-tag {
+    bottom: 15%;
+    right: 10%;
+}
+
+.character-card.style3 .name-tag.center-tag {
+    bottom: 10%;
+    left: 38%;
+}
+
+
+/* Контейнер поиска */
 .search-container {
     position: relative;
-    width: 200px;
+    width: 500px;
+    margin-left: auto;  /* Прижимаем к навигации */
+    margin-right: 20px;
+}
+
+/* Поле ввода */
+.search-input {
+    width: 450%;
+    height: 40px;
+    padding: 8px 15px;
+    font-family: 'MyCustomFont', Arial, sans-serif;
+    font-size: 16px;
+    color: #330000;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #330000;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.2s ease;
+    cursor: url('images/gui/cursor.png') 1 1, text;
+}
+
+.search-input:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    background: white;
+}
+
+.search-input::placeholder {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Выпадающий список результатов */
+.search-results {
+    position: absolute;
+    width: 450%;
+    max-height: 500px;
+    overflow-y: auto;
+    background: rgba(50, 20, 10, 0.95);
+    border: 2px solid #330000;
+    border-radius: 10px;
+    margin-top: 5px;
+    z-index: 1000;
+    display: none;
+    backdrop-filter: blur(5px);
+}
+
+.search-results.active {
+    display: block;
+}
+
+/* Элемент результата */
+.search-result-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+}
+
+/* Иконка результата */
+.search-result-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd700;
+}
+
+/* Текст результата */
+.search-result-text {
+    flex: 1;
+}
+
+.search-result-name {
+    font-size: 17px;
+    font-family:'SevenExEightPixel';
+    color: #ffffff;
+}
+
+.search-result-location {
+    font-family:'SevenExEightPixel';
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.search-result-type {
+    font-size: 13px;
+    color: #b9b9b9;
+    font-style: italic;
+}
+
+/* Адаптация */
+@media (max-width: 1200px) {
+    .search-container {
+        width: 250px;
+    }
+}
+
+@media (max-width: 900px) {
+    .header-content {
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+    
+    .search-container {
+        width: 100%;
+        margin: 10px 0;
+        order: 3;
+    }
+}
+
+/* Стили для кнопки с эмодзи */
+.button-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #330000;
+    font-size: 18px;
+    font-weight: normal;
+    white-space: nowrap;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.button-emoji {
+    font-size: 24px;  /* Эмодзи крупнее */
+    line-height: 1;
+}
+
+.button-name {
+    font-size: 18px;
+}
+
+/* Эмодзи в кнопке */
+.button-emoji {
+    font-size: 24px;
+    margin-right: 8px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.button-name {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+    .button-emoji {
+        font-size: 20px;
+        margin-right: 5px;
+    }
+}
+
+
+/* Эмодзи в названии карточки - УМЕНЬШАЕМ И ЦЕНТРИРУЕМ */
+.name-emoji {
+    font-size: 28px;  /* Было 36px, уменьшили */
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;  /* Центрирование по вертикали */
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;  /* Убираем лишние отступы */
+    transform: translateY(-2px);  /* Небольшая корректировка по вертикали */
+}
+
+.name-location {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 1.2;
+}
+
+/* Для style3 (без таблички) */
+.character-card.style3 .name-emoji {
+    font-size: 32px;  /* Было 42px, уменьшили */
+    margin-right: 10px;
+    transform: translateY(-2px);
+}
+
+.character-card.style3 .name-location {
+    font-size: 28px;  /* Подгоняем под размер эмодзи */
+}
+
+/* Если эмодзи все еще не центрируется */
+.name-bg-text {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+    .name-emoji {
+        font-size: 22px;
+        margin-right: 5px;
+    }
+    
+    .character-card.style3 .name-emoji {
+        font-size: 26px;
+    }
+}
+
+
+/* Результаты поиска эмодзи */
+.emoji-result {
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.emoji-large {
+    font-size: 64px;
+    margin-bottom: 15px;
+    animation: emojiPop 0.3s ease;
+}
+
+@keyframes emojiPop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Занятый эмодзи */
+.emoji-result.occupied {
+    border-left: 4px solid #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.emoji-result.occupied .emoji-large {
+    filter: drop-shadow(0 0 10px #ff6b6b);
+}
+
+/* Свободный эмодзи */
+.emoji-result.free {
+    border-left: 4px solid #6bff6b;
+    background: rgba(107, 255, 107, 0.1);
+}
+
+.emoji-result.free .emoji-large {
+    filter: drop-shadow(0 0 10px #6bff6b);
+}
+
+.emoji-result.free .search-result-name {
+    color: #6bff6b;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* ===== АДАПТАЦИЯ ШАПКИ, ПОИСКА И ССЫЛОК ===== */
+:root {
+    --scale-factor: 1;
+}
+
+/* Базовые адаптивные размеры */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 max(20px, 4vw);
+    gap: max(10px, 2vw);
+    height: 100%;
+}
+
+/* Логотип */
+.logo {
+    flex-shrink: 0;
+}
+
+.logo img {
+    height: clamp(30px, min(5vh, 5vw), 80px);
+    width: auto;
+    transition: transform 0.2s;
+}
+
+/* Название */
+.frame-header h1 {
+    font-size: clamp(16px, min(3vw, 3vh), 42px);
+    white-space: nowrap;
+    margin: 0 max(5px, 1vw);
+    color: #330000;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+}
+
+/* Поиск - 45% ширины */
+.search-container {
+    position: relative;
+    width: min(45vw, 800px);
+    min-width: 250px;
     margin-left: auto;
+    margin-right: max(10px, 1vw);
 }
 
 .search-input {
     width: 100%;
-    height: 40px;
-    padding: 8px 15px;
-    font-size: 14px;
-    background: rgba(255,255,255,0.9);
+    height: clamp(36px, min(5vh, 3vw), 60px);
+    padding: 0 max(12px, 1.5vw);
+    font-size: clamp(14px, min(1.5vw, 2vh), 22px);
     border: 2px solid #330000;
-    border-radius: 20px;
+    border-radius: max(15px, 2vw);
+    background: rgba(255,255,255,0.9);
 }
 
+.search-input:focus {
+    background: white;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+.search-input::placeholder {
+    font-size: clamp(12px, min(1.3vw, 1.8vh), 18px);
+    color: #666;
+}
+
+/* ===== ИСПРАВЛЕННЫЙ ПОИСК ===== */
 .search-results {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    max-height: 300px;
+    min-width: 250px;  /* Минимальная ширина */
+    max-height: 400px;
     overflow-y: auto;
-    background: rgba(40,20,10,0.98);
+    background: rgba(40, 20, 10, 0.98);
+    border: 2px solid #330000;
     border-radius: 10px;
     margin-top: 5px;
     z-index: 10000;
     display: none;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
-.search-results.active { display: block; }
+.search-results.active {
+    display: block;
+}
+
 .search-result-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255,215,0,0.2);
     cursor: pointer;
+    transition: background 0.2s;
+    min-height: 60px;  /* Минимальная высота */
 }
+
+.search-result-item:hover {
+    background: rgba(255,215,0,0.15);
+}
+
 .search-result-icon {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;  /* Фиксированная минимальная ширина */
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #ffd700;
 }
-.search-result-name { font-size: 14px; color: #ffd700; }
-.search-result-type { font-size: 12px; color: #aaa; }
 
-/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
-@media (max-width: 768px) {
-    
-    /* Прячем ПК элементы */
-    .frame-left, .frame-right, .frame-bottom,
-    .corner-left, .corner-right, .rail-container,
-    .parallax-container, .name-tags, .card-background {
-        display: none !important;
+.search-result-text {
+    flex: 1;
+    min-width: 0;  /* Позволяет тексту переноситься */
+}
+
+.search-result-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 2px;
+    white-space: normal;  /* Разрешаем перенос */
+    word-break: break-word;  /* Переносим длинные слова */
+}
+
+.search-result-location {
+    font-size: 14px;
+    color: #ddd;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.search-result-type {
+    font-size: 12px;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Эмодзи результаты */
+.emoji-result {
+    padding: 20px;
+    text-align: center;
+}
+
+.emoji-large {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+/* Для длинных названий */
+.search-result-name span,
+.search-result-location span {
+    display: inline-block;
+    max-width: 100%;
+}
+
+/* Кнопки в шапке */
+.header-nav {
+    display: flex;
+    gap: clamp(5px, 1vw, 15px);
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header-link {
+    position: relative;
+    width: clamp(50px, 5vw, 100px);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.header-link:hover {
+    transform: translateY(-2px);
+}
+
+.header-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.header-link .button-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.header-link:hover .button-default {
+    opacity: 0;
+}
+
+.header-link:hover .button-hover {
+    opacity: 1;
+}
+
+.header-link span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #330000;
+    font-size: clamp(10px, 1.2vw, 16px);
+    font-weight: bold;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Адаптация для разных экранов */
+@media (min-width: 2560px) {
+    .search-container {
+        width: 45vw;
+        max-width: 1200px;
     }
     
-    /* Простая шапка */
-    .frame-header {
-        height: 60px !important;
-        background: #2a1a0a !important;
-        border-bottom: 2px solid #ffd700 !important;
-        position: fixed !important;
+    .search-input {
+        height: 70px;
+        font-size: 26px;
     }
     
+    .search-result-name {
+        font-size: 24px;
+    }
+    
+    .header-link {
+        width: 120px;
+    }
+    
+    .header-link span {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .search-container {
+        width: 35vw;
+    }
+}
+
+@media (max-width: 1024px) {
     .header-content {
-        padding: 0 10px !important;
-        gap: 8px !important;
+        padding: 0 15px;
     }
     
-    .logo img { height: 35px !important; }
-    .frame-header h1 { font-size: 12px !important; display: none !important; }
-    .header-text-link { font-size: 10px !important; padding: 5px !important; }
-    .search-container { width: 100px !important; }
-    .search-input { height: 30px !important; font-size: 10px !important; }
-    
-    /* Контент */
-    .frame-content {
-        top: 60px !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        padding: 10px !important;
+    .search-container {
+        width: 30vw;
+        min-width: 200px;
     }
     
-    .left-column {
-        width: 100% !important;
-        float: none !important;
-        padding: 0 !important;
+    .header-link {
+        width: 45px;
     }
-    
-    .buttons-container {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 8px !important;
-    }
-    
-    .character-button {
-        margin: 0 !important;
-        max-width: none !important;
-        width: 100% !important;
-        opacity: 1 !important;
-        transform: none !important;
-    }
-    
-    .button-text {
-        font-size: 14px !important;
-        padding: 8px !important;
-    }
-    
-    /* МОБИЛЬНАЯ КАРТОЧКА */
-    .cards-container {
-        position: fixed !important;
-        background: rgba(0,0,0,0.9) !important;
-        padding: 20px !important;
-        overflow-y: auto !important;
-    }
-    
-    .character-card {
-        width: 100% !important;
-        max-width: 350px !important;
-        margin: 0 auto !important;
-    }
-    
-    /* Мобильный фон */
-    .card-background-mobile {
-        display: block !important;
-        width: 100% !important;
-        border-radius: 15px !important;
-    }
-    
-    /* Контент поверх */
-    .card-text-content-mobile {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        padding: 30px 20px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        color: white !important;
-    }
-    
-    .mobile-title {
-        font-size: 24px !important;
-        color: #ffd700 !important;
-        text-align: center !important;
-        margin-bottom: 15px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 8px !important;
-    }
-    
-    .mobile-emoji { font-size: 28px !important; }
-    
-    .mobile-description {
-        flex: 1 !important;
-        overflow-y: auto !important;
-        font-size: 12px !important;
-        line-height: 1.5 !important;
-        margin-bottom: 15px !important;
-        padding: 10px !important;
-        background: rgba(0,0,0,0.3) !important;
-        border-radius: 8px !important;
-    }
-    
-    .mobile-links {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 8px !important;
-        justify-content: center !important;
-    }
-    
-    .mobile-link {
-        background: #330000 !important;
-        color: #ffd700 !important;
-        text-decoration: none !important;
-        padding: 8px 15px !important;
-        border-radius: 25px !important;
-        font-size: 12px !important;
-        font-weight: bold !important;
-        border: 2px solid #ffd700 !important;
-        text-align: center !important;
-        flex: 1 !important;
-    }
-    
-    /* Превью */
-    .preview-container {
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 90% !important;
-        min-width: auto !important;
-        background: rgba(0,0,0,0.9) !important;
-        border-radius: 10px !important;
-        padding: 15px !important;
-    }
-    
-    .portraits-row {
-        gap: 15px !important;
-        justify-content: center !important;
-        padding-left: 0 !important;
-    }
-    
-    .portrait-item { width: 100px !important; }
-    .preview-portrait { width: 100px !important; height: 100px !important; }
-    .name-plate img { width: 90px !important; }
-    .name-text { font-size: 10px !important; }
-}
-
-@media (max-width: 480px) {
-    .mobile-title { font-size: 20px !important; }
-    .mobile-emoji { font-size: 24px !important; }
-    .mobile-description { font-size: 11px !important; }
-    .mobile-link { font-size: 10px !important; padding: 6px 10px !important; }
 }
 
 @media (max-width: 768px) {
-    .overlay {
+    .header-content {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+    }
+    
+    .search-container {
+        width: 100%;
+        order: 3;
+        margin: 10px 0 0;
+    }
+    
+    .header-nav {
+        margin-left: 0;
+    }
+}
+
+/* ===== АДАПТИВНЫЕ ПОРТРЕТЫ ===== */
+.preview-container {
+    position: fixed;
+    top: 50%;
+    left: 33%;
+    transform: translateY(-50%);
+    width: auto;
+    min-width: min(400px, 40vw);
+    max-width: min(900px, 80vw);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.portraits-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: clamp(15px, 3vw, 40px);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.portrait-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: clamp(120px, 15vw, 250px);
+}
+
+.preview-portrait {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: clamp(8px, 1.5vw, 15px);
+    border: clamp(2px, 0.3vw, 4px) solid #330000;
+    box-shadow: 0 clamp(3px, 0.5vw, 8px) clamp(8px, 1.5vw, 20px) rgba(0,0,0,0.5);
+    object-fit: cover;
+}
+
+.name-plate {
+    margin-top: clamp(5px, 1vh, 12px);
+}
+
+.name-plate img {
+    width: clamp(100px, 13vw, 220px);
+    height: auto;
+}
+
+.name-text {
+    font-size: clamp(12px, 1.8vw, 22px);
+}
+
+
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+@media (max-width: 1024px) and (orientation: landscape) {
+    
+    /* Масштабирование */
+    body {
+        zoom: 0.65;
+        -moz-transform: scale(0.65);
+        -moz-transform-origin: 0 0;
+        -webkit-transform: scale(0.65);
+        -webkit-transform-origin: 0 0;
+        transform: scale(0.65);
+        transform-origin: 0 0;
+        width: 153.8%;
+        height: 153.8%;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    
+    .frame-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .frame-content {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* МОБИЛЬНАЯ ШАПКА - скрываем кнопки */
+    .header-nav {
         display: none !important;
     }
+    
+    /* Увеличиваем поиск */
+    .search-container {
+        width: 350px !important;
+        margin-left: auto !important;
+        margin-right: 20px !important;
+    }
+    
+    .search-input {
+        height: 45px !important;
+        font-size: 18px !important;
+    }
+    
+    /* Результаты поиска больше */
+    .search-results {
+        max-height: 500px !important;
+        min-width: 350px !important;
+    }
+    
+    .search-result-item {
+        padding: 15px 20px !important;
+        gap: 15px !important;
+    }
+    
+    .search-result-icon {
+        width: 55px !important;
+        height: 55px !important;
+    }
+    
+    .search-result-name {
+        font-size: 18px !important;
+    }
+    
+    .search-result-location {
+        font-size: 14px !important;
+    }
+    
+    /* Эмодзи результаты */
+    .emoji-large {
+        font-size: 80px !important;
+    }
+    
+    .emoji-result {
+        padding: 30px !important;
+    }
+    
+    .emoji-result .search-result-name {
+        font-size: 28px !important;
+    }
+    
+    /* Увеличиваем кликабельные элементы */
+    .character-button, .header-link, .card-link-button, .close-button {
+        min-height: 44px;
+        min-width: 44px;
+        cursor: pointer;
+    }
+}
+
+/* Вертикальная ориентация */
+@media (orientation: portrait) and (max-width: 1024px) {
+    .orientation-message {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 999999;
+        font-size: 24px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .orientation-message::before {
+        content: "📱";
+        font-size: 64px;
+        margin-bottom: 20px;
+    }
+    
+    body > *:not(.orientation-message) {
+        display: none !important;
+    }
+}
+
+
+/* ===== УВЕЛИЧЕННЫЙ ПОИСК ===== */
+.search-container {
+    position: relative;
+    width: 450px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.search-input {
+    width: 100%;
+    height: 48px;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 30px;
+}
+
+.search-results {
+    max-height: 500px;
+    min-width: 400px;
+}
+
+.search-result-item {
+    padding: 15px 20px;
+    gap: 15px;
+}
+
+.search-result-icon {
+    width: 55px;
+    height: 55px;
+}
+
+.search-result-name {
+    font-size: 18px;
+}
+
+.search-result-location {
+    font-size: 14px;
+}
+
+.search-result-type {
+    font-size: 13px;
+}
+
+/* Эмодзи результаты увеличены */
+.emoji-large {
+    font-size: 80px;
+    margin-bottom: 15px;
+}
+
+.emoji-result {
+    padding: 30px;
+}
+
+.emoji-result .search-result-name {
+    font-size: 28px;
+}
+
+
+
+/* ===== ОБЩИЕ СТИЛИ ДЛЯ КАРТОЧЕК БЕЗ ПАРАЛЛАКСА ===== */
+.character-card.style1-nopar,
+.character-card.style2-nopar,
+.character-card.style3-nopar {
+    position: relative;
+}
+
+.character-card.style1-nopar .parallax-container,
+.character-card.style2-nopar .parallax-container,
+.character-card.style3-nopar .parallax-container,
+.character-card.style1-nopar .name-tags,
+.character-card.style2-nopar .name-tags,
+.character-card.style3-nopar .name-tags {
+    display: none !important;
+}
+
+/* Левая колонка с портретами - увеличен отступ слева */
+.character-card.style1-nopar .portraits-sidebar,
+.character-card.style2-nopar .portraits-sidebar,
+.character-card.style3-nopar .portraits-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    padding: 60px 60px 60px 80px;  /* Увеличен отступ слева (последнее число) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;  /* Расстояние между портретами */
+    z-index: 203;
+}
+
+/* Элемент портрета - убрана обводка и анимация */
+.character-card.style1-nopar .portrait-side-item,
+.character-card.style2-nopar .portrait-side-item,
+.character-card.style3-nopar .portrait-side-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;  /* Расстояние между портретом и табличкой */
+    /* Убрана анимация */
+}
+
+/* Убрана анимация при наведении */
+.character-card.style1-nopar .portrait-side-item:hover,
+.character-card.style2-nopar .portrait-side-item:hover,
+.character-card.style3-nopar .portrait-side-item:hover {
+    transform: none;
+}
+
+/* Портрет - увеличен размер, убрана обводка */
+.character-card.style1-nopar .portrait-side-img,
+.character-card.style2-nopar .portrait-side-img,
+.character-card.style3-nopar .portrait-side-img {
+    width: 168px;   /* 140px + 20% = 168px */
+    height: 168px;  /* 140px + 20% = 168px */
+    border-radius: 15px;
+    object-fit: cover;
+    border: none;  /* Убрана обводка */
+    box-shadow: none;  /* Убрана тень */
+}
+
+/* Табличка с именем - увеличен размер */
+.character-card.style1-nopar .name-plate-card,
+.character-card.style2-nopar .name-plate-card,
+.character-card.style3-nopar .name-plate-card {
+    position: relative;
+    cursor: pointer;
+    transition: none;  /* Убрана анимация */
+}
+
+.character-card.style1-nopar .name-plate-card:hover,
+.character-card.style2-nopar .name-plate-card:hover,
+.character-card.style3-nopar .name-plate-card:hover {
+    transform: none;  /* Убрана анимация */
+}
+
+.character-card.style1-nopar .name-plate-card img,
+.character-card.style2-nopar .name-plate-card img,
+.character-card.style3-nopar .name-plate-card img {
+    width: 192px;   /* 160px + 20% = 192px */
+    height: auto;
+    display: block;
+}
+
+.character-card.style1-nopar .name-plate-card .plate-text,
+.character-card.style2-nopar .name-plate-card .plate-text,
+.character-card.style3-nopar .name-plate-card .plate-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;  /* 20px + 10% */
+    font-weight: bold;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+.header-text-link {
+    color: #470000 !important;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 15px;
+    transition: all 0.2s ease;
+}
+
+.header-text-link:hover {
+    color: #ffd700 !important;
+    transform: translateY(-2px);
+}
+
+/* ===== ПРИНУДИТЕЛЬНОЕ УМЕНЬШЕНИЕ РАССТОЯНИЯ МЕЖДУ КНОПКАМИ ===== */
+
+/* Убираем прижимание к правому краю */
+.character-card.style1-nopar .links-right,
+.character-card.style2-nopar .links-right,
+.character-card.style3-nopar .links-right,
+.character-card.style1 .links-right,
+.character-card.style2 .links-right,
+.character-card.style3 .links-right {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: flex-start !important;  /* было flex-end, меняем на flex-start */
+}
+
+/* Убираем margin-left: auto у кнопок */
+.character-card.style1-nopar .links-right .card-link-button,
+.character-card.style2-nopar .links-right .card-link-button,
+.character-card.style3-nopar .links-right .card-link-button,
+.character-card.style1 .links-right .card-link-button,
+.character-card.style2 .links-right .card-link-button,
+.character-card.style3 .links-right .card-link-button {
+    margin-left: 0 !important;
+}
+
+/* Теперь column-gap будет работать */
+.character-card.style1-nopar .links-container,
+.character-card.style2-nopar .links-container,
+.character-card.style3-nopar .links-container,
+.character-card.style1 .links-container,
+.character-card.style2 .links-container,
+.character-card.style3 .links-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 5px !important;        /* вертикальное расстояние */
+    column-gap: 10px !important; /* горизонтальное расстояние МЕЖДУ колонками */
+    margin-top: 20px !important;
 }
