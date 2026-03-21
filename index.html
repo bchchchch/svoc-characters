@@ -7,58 +7,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div style="width: 1024px; margin: 0 auto; position: relative;"></div>
-    <!-- Фон сайта -->
+
     <div class="background"></div>
 
-    <!-- ===== РАМКА ИНТЕРФЕЙСА ===== -->
     <div class="frame-container">
         
-        <!-- Затемнение ВНУТРИ рамки -->
         <div class="overlay" id="overlay"></div>
         
-        <!-- ===== ШАПКА (ВНУТРИ КОНТЕЙНЕРА!) ===== -->
+        <!-- ШАПКА -->
         <div class="frame-header">
             <div class="header-content">
-                <!-- Логотип -->
                 <div class="logo">
                     <img src="images/logo.png" alt="Логотип">
                 </div>
-                
-                <!-- Заголовок -->
                 <h1>Stardew Valley OC | Навигация по персонажам</h1>
-                
-                <!-- Навигация -->
                 <div class="header-nav">
                     <a href="https://vk.com/stardewoc" target="_blank" class="header-text-link">Группа в ВК</a>
                     <a href="https://vk.com/board236063317" target="_blank" class="header-text-link">Альбомы</a>
                     <a href="https://vk.com/albums-236063317" target="_blank" class="header-text-link">Обсуждения</a>
                 </div>
-                
-                <!-- Поиск -->
                 <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Поиск локации, персонажа или эмодзи...">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Поиск...">
                     <div class="search-results" id="searchResults"></div>
                 </div>
             </div>
         </div>
         
-        <!-- Левая боковая рамка -->
         <div class="frame-left"></div>
-        
-        <!-- Правая боковая рамка -->
         <div class="frame-right"></div>
-        
-        <!-- Нижняя рамка (подвал) -->
         <div class="frame-bottom"></div>
-        
-        <!-- Левый нижний уголок -->
         <div class="corner-left"></div>
-        
-        <!-- Правый нижний уголок -->
         <div class="corner-right"></div>
         
-        <!-- РЕЛЬСА И ПОЛЗУНОК -->
         <div class="rail-container">
             <div class="rail-track" id="scrollTrack">
                 <div class="rail-thumb" id="scrollThumb">
@@ -67,25 +47,18 @@
             </div>
         </div>
         
-        <!-- КОНТЕНТ ВНУТРИ РАМКИ -->
         <div class="frame-content" id="frameContent">
-            
-            <!-- Левая колонка с кнопками -->
             <div class="left-column">
                 <div class="buttons-container" id="buttonsContainer"></div>
             </div>
-
-            <!-- ПРЕВЬЮ ПРИ НАВЕДЕНИИ -->
             <div class="preview-container" id="previewContainer">
                 <div class="portraits-row" id="portraitsRow"></div>
             </div>
-            
-        </div> <!-- конец frame-content -->
+        </div>
         
-        <!-- КАРТОЧКИ -->
         <div class="cards-container" id="cardsContainer"></div>
         
-    </div> <!-- конец frame-container -->
+    </div>
 
     <script src="script.js"></script>
 </body>
