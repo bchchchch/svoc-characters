@@ -786,26 +786,8 @@ a, button, .character-button, .card-link-button,
     .mobile-link { font-size: 10px !important; padding: 6px 10px !important; }
 }
 
-/* Принудительное исправление затемнения на мобильных */
 @media (max-width: 768px) {
     .overlay {
-        position: fixed !important;
-        z-index: 999 !important;
-        background-color: rgba(0, 0, 0, 0.8) !important;
-    }
-    
-    .overlay.active {
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    
-    /* Карточка поверх затемнения */
-    .cards-container {
-        z-index: 1000 !important;
-    }
-    
-    .character-card {
-        z-index: 1001 !important;
+        display: none !important;
     }
 }
