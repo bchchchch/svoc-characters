@@ -69,8 +69,8 @@ const charactersData = {
     },
 
     "char5": {
-        buttonName: "Сансет Бэй",  // УБРАЛ ПРОБЕЛ В НАЧАЛЕ
-        locationName: "Сансет Бэй", // УБРАЛ ПРОБЕЛ В НАЧАЛЕ
+        buttonName: "Сансет Бэй", 
+        locationName: "Сансет Бэй", 
         emoji: "🌅",
         description: "Как часто судьба подкидывает нам интересные встречи и хитросплетения путей? Как многие выбираются из воды сухими? Ферма «Роуз Харт» в районе округа Сансет Бэй, что в Пеликане – тихое местечко со своими секретами. Жители Пеликана хорошо знают Джулс, но совершенно не знают, чего стоило ей обрести покой в том виде, который она имеет сейчас. Однако, покой ли это? Жизнь в маленьком городке, работа изо дня в день, избитый график – это все смешивается с человеческими взаимоотношениями, которые, будто молодой росток, пробиваются вверх к свету сквозь толстый слой пепла. За стабильностью и ясностью кроются призраки прошлого, преследующие девушку и по сей день. Вот только «палки в колеса» вставляет и настоящее. После долгой ночи всегда поднимается солнце, но поднимется ли оно в этот раз?",
         portraits: ["juls"],
@@ -84,7 +84,7 @@ const charactersData = {
         cardStyle: "style2",
         parallaxImg: "images/parallax/juls.jpg"
     }
-}; // ЗАКРЫВАЮЩАЯ СКОБКА БЫЛА, ПРОСТО УБРАЛ ЛИШНЮЮ
+}; 
 
 // Данные портретов
 const portraitImages = {
@@ -97,18 +97,15 @@ const portraitImages = {
     "juls": "images/portraits/juls.jpg",
 };
 
-
-
-const sortedCharacters = Object.entries(charactersData).sort((a, b) => {
-    const nameA = a[1].buttonName.toLowerCase();
-    const nameB = b[1].buttonName.toLowerCase();
-    return nameA.localeCompare(nameB, 'ru'); // Сортировка с учетом русского языка
-});
-
-
+// ===== ГЕНЕРАЦИЯ САЙТА =====
 function generateSite() {
     const buttonsContainer = document.getElementById('buttonsContainer');
     const cardsContainer = document.getElementById('cardsContainer');
+    
+    if (!buttonsContainer || !cardsContainer) {
+        console.error('Контейнеры не найдены');
+        return;
+    }
     
     buttonsContainer.innerHTML = '';
     cardsContainer.innerHTML = '';
@@ -120,7 +117,6 @@ function generateSite() {
         return nameA.localeCompare(nameB, 'ru');
     });
     
-    // Используем sortedCharacters вместо Object.entries
     for (let [charKey, data] of sortedCharacters) {
         
         // СОЗДАЕМ КНОПКУ
@@ -141,69 +137,68 @@ function generateSite() {
         
         buttonsContainer.appendChild(button);
         
-                // СОЗДАЕМ КАРТОЧКУ
+        // СОЗДАЕМ КАРТОЧКУ
         const card = document.createElement('div');
         card.className = `character-card ${data.cardStyle || 'style1'}`;
         card.id = `${charKey}-card`;
         
-        const isMobile = false;
-            // ПК КАРТОЧКА
-            let tagsHTML = '';
-            data.parallaxNames.forEach((name, index) => {
-                const position = data.parallaxPositions[index] || 'center';
-                tagsHTML += `
-                    <div class="name-tag ${position}-tag">
-                        <img src="images/char_name.png" alt="Рамка" class="tag-bg">
-                        <span class="tag-text">${name}</span>
-                    </div>
-                `;
-            });
-            
-            card.innerHTML = `
-                <img src="images/card_1.png" alt="Карточка" class="card-background">
-                
-                <div class="parallax-container">
-                    <img src="${data.parallaxImg || 'images/mark.jpg'}" alt="Пейзаж" class="parallax-image" id="parallax-${charKey}">
+        // ПК КАРТОЧКА
+        let tagsHTML = '';
+        data.parallaxNames.forEach((name, index) => {
+            const position = data.parallaxPositions[index] || 'center';
+            tagsHTML += `
+                <div class="name-tag ${position}-tag">
+                    <img src="images/char_name.png" alt="Рамка" class="tag-bg">
+                    <span class="tag-text">${name}</span>
                 </div>
-                
-                <div class="name-tags">
-                    ${tagsHTML}
-                </div>
-                
-                <div class="card-text-content">
-                    <div class="name-with-bg">
-                        <img src="images/setting_name.png" alt="Рамка" class="name-bg">
-                        <span class="name-bg-text">
-                            <span class="name-emoji">${data.emoji || ''}</span>
-                            <span class="name-location">${data.locationName}</span>
-                        </span>
-                    </div>
-                    
-                    <div class="character-description">
-                        ${data.description.split('\n').map(p => `<p>${p}</p>`).join('')}
-                    </div>
-                    
-                    <div class="links-container">
-                        <a href="${data.links.album}" target="_blank" class="card-link-button">
-                            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-                            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-                            <span class="link-text">Альбом</span>
-                        </a>
-                        <a href="${data.links.discussion}" target="_blank" class="card-link-button">
-                            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-                            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-                            <span class="link-text">Обсуждение</span>
-                        </a>
-                        <a href="${data.links.lore}" target="_blank" class="card-link-button">
-                            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-                            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-                            <span class="link-text">Лорная статья</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <img src="images/back.png" alt="Закрыть" class="close-button">
             `;
+        });
+        
+        card.innerHTML = `
+            <img src="images/card_1.png" alt="Карточка" class="card-background">
+            
+            <div class="parallax-container">
+                <img src="${data.parallaxImg || 'images/mark.jpg'}" alt="Пейзаж" class="parallax-image" id="parallax-${charKey}">
+            </div>
+            
+            <div class="name-tags">
+                ${tagsHTML}
+            </div>
+            
+            <div class="card-text-content">
+                <div class="name-with-bg">
+                    <img src="images/setting_name.png" alt="Рамка" class="name-bg">
+                    <span class="name-bg-text">
+                        <span class="name-emoji">${data.emoji || ''}</span>
+                        <span class="name-location">${data.locationName}</span>
+                    </span>
+                </div>
+                
+                <div class="character-description">
+                    ${data.description.split('\n').map(p => `<p>${p}</p>`).join('')}
+                </div>
+                
+                <div class="links-container">
+                    <a href="${data.links.album}" target="_blank" class="card-link-button">
+                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                        <span class="link-text">Альбом</span>
+                    </a>
+                    <a href="${data.links.discussion}" target="_blank" class="card-link-button">
+                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                        <span class="link-text">Обсуждение</span>
+                    </a>
+                    <a href="${data.links.lore}" target="_blank" class="card-link-button">
+                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                        <span class="link-text">Лорная статья</span>
+                    </a>
+                </div>
+            </div>
+            
+            <img src="images/back.png" alt="Закрыть" class="close-button">
+        `;
         
         cardsContainer.appendChild(card);
     }
@@ -244,7 +239,7 @@ function attachEventListeners() {
         });
         
         isClosing = true;
-        overlay.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
         
         setTimeout(() => {
             cards.forEach(card => {
@@ -274,7 +269,7 @@ function attachEventListeners() {
                 cards.forEach(c => c.classList.remove('closing'));
                 if (card) {
                     card.classList.add('active');
-                    overlay.classList.add('active');
+                    if (overlay) overlay.classList.add('active');
                 }
             }, 200);
             
@@ -290,7 +285,7 @@ function attachEventListeners() {
         
         button.addEventListener('mouseleave', function() {
             previewTimer = setTimeout(() => {
-                if (!previewContainer.matches(':hover')) {
+                if (previewContainer && !previewContainer.matches(':hover')) {
                     hidePreview();
                 }
             }, 100);
@@ -306,7 +301,7 @@ function attachEventListeners() {
     });
     
     // Затемнение
-    overlay.addEventListener('click', closeAll);
+    if (overlay) overlay.addEventListener('click', closeAll);
     
     // Предотвращение закрытия при клике на карточку
     cards.forEach(card => {
@@ -316,32 +311,38 @@ function attachEventListeners() {
     });
     
     // Превью
-    previewContainer.addEventListener('mouseenter', function() {
-        if (previewTimer) clearTimeout(previewTimer);
-    });
+    if (previewContainer) {
+        previewContainer.addEventListener('mouseenter', function() {
+            if (previewTimer) clearTimeout(previewTimer);
+        });
+        
+        previewContainer.addEventListener('mouseleave', function() {
+            previewTimer = setTimeout(() => {
+                hidePreview();
+            }, 100);
+        });
+    }
     
-    previewContainer.addEventListener('mouseleave', function() {
-        previewTimer = setTimeout(() => {
-            hidePreview();
-        }, 100);
-    });
-    
-    portraitsRow.addEventListener('click', function(e) {
-        const portraitItem = e.target.closest('.portrait-item');
-        if (portraitItem && currentButton) {
-            const event = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window
-            });
-            currentButton.dispatchEvent(event);
-            hidePreview();
-        }
-    });
+    if (portraitsRow) {
+        portraitsRow.addEventListener('click', function(e) {
+            const portraitItem = e.target.closest('.portrait-item');
+            if (portraitItem && currentButton) {
+                const event = new MouseEvent('click', {
+                    bubbles: true,
+                    cancelable: true,
+                    view: window
+                });
+                currentButton.dispatchEvent(event);
+                hidePreview();
+            }
+        });
+    }
 }
 
 // ===== ПРЕВЬЮ =====
 function showPreview(button) {
+    if (!portraitsRow || !previewContainer) return;
+    
     const portraitsAttr = button.getAttribute('data-portraits');
     const namesAttr = button.getAttribute('data-names');
     
@@ -352,13 +353,6 @@ function showPreview(button) {
     
     portraitsRow.innerHTML = '';
     portraitsRow.className = 'portraits-row';
-    
-    // Добавляем класс в зависимости от количества портретов
-    if (portraitKeys.length === 2) {
-        portraitsRow.classList.add('two-portraits');
-    } else if (portraitKeys.length === 3) {
-        portraitsRow.classList.add('three-portraits');
-    }
     
     portraitKeys.forEach((key, index) => {
         const portraitInfo = portraitImages[key.trim()];
@@ -396,7 +390,7 @@ function showPreview(button) {
 }
 
 function hidePreview() {
-    previewContainer.classList.remove('active');
+    if (previewContainer) previewContainer.classList.remove('active');
 }
 
 // ===== ПАРАЛЛАКС =====
@@ -437,7 +431,7 @@ function initScrollbar() {
     if (!scrollTrack || !scrollThumb || !content) return;
     
     let isDragging = false;
-    const thumbHeight = 72; // высота slider_2.png
+    const thumbHeight = 72;
     
     function updateThumbPosition() {
         const scrollPercent = content.scrollTop / (content.scrollHeight - content.clientHeight);
@@ -488,18 +482,10 @@ function initScrollbar() {
         content.scrollTop = scrollPercent * maxScroll;
     });
     
-    // Начальная позиция
     setTimeout(updateThumbPosition, 100);
 }
 
-// ===== ЗАПУСК =====
-document.addEventListener('DOMContentLoaded', function() {
-    generateSite();
-    setTimeout(initScrollbar, 500);
-});
-
-
-// ===== ПОИСК ПО ЭМОДЗИ И ТЕКСТУ =====
+// ===== ПОИСК =====
 function initSearch() {
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
@@ -516,7 +502,6 @@ function initSearch() {
     const emojiMap = new Map();
     
     for (let [charKey, data] of Object.entries(charactersData)) {
-        // Добавляем локацию
         searchData.push({
             type: 'location',
             name: data.locationName,
@@ -525,7 +510,6 @@ function initSearch() {
             emoji: data.emoji || ''
         });
         
-        // Сохраняем эмодзи в карту
         if (data.emoji) {
             emojiMap.set(data.emoji, {
                 charKey: charKey,
@@ -534,7 +518,6 @@ function initSearch() {
             });
         }
         
-        // Добавляем каждого персонажа
         if (data.parallaxNames && data.portraits) {
             data.parallaxNames.forEach((name, index) => {
                 const portraitKey = data.portraits[index];
@@ -550,16 +533,9 @@ function initSearch() {
         }
     }
     
-    console.log('Данные для поиска загружены');
-    console.log('Доступные эмодзи:', Array.from(emojiMap.keys()));
-    
-    // Функция проверки эмодзи
     function isEmoji(char) {
         if (!char) return false;
-        
         const codePoint = char.codePointAt(0);
-        
-        // Диапазоны эмодзи
         return (
             (codePoint >= 0x1F300 && codePoint <= 0x1F5FF) ||
             (codePoint >= 0x1F600 && codePoint <= 0x1F64F) ||
@@ -571,16 +547,12 @@ function initSearch() {
         );
     }
     
-    // Функция поиска
     function performSearch(query) {
         if (!query || query.length < 1) {
             searchResults.classList.remove('active');
             return;
         }
         
-        console.log('Поиск по запросу:', query);
-        
-        // Проверяем, является ли запрос эмодзи
         const chars = Array.from(query);
         let foundEmoji = null;
         
@@ -591,12 +563,8 @@ function initSearch() {
             }
         }
         
-        // Если нашли эмодзи
         if (foundEmoji) {
-            console.log('Найден эмодзи в запросе:', foundEmoji);
-            
             if (emojiMap.has(foundEmoji)) {
-                // Эмодзи занят
                 const data = emojiMap.get(foundEmoji);
                 searchResults.innerHTML = `
                     <div class="search-result-item emoji-result occupied" data-char="${data.charKey}">
@@ -608,7 +576,6 @@ function initSearch() {
                     </div>
                 `;
                 
-                // Добавляем обработчик
                 const resultItem = searchResults.querySelector('.emoji-result.occupied');
                 if (resultItem) {
                     resultItem.addEventListener('click', function() {
@@ -625,7 +592,6 @@ function initSearch() {
                 searchResults.classList.add('active');
                 return;
             } else {
-                // Эмодзи свободен
                 searchResults.innerHTML = `
                     <div class="search-result-item emoji-result free">
                         <div class="emoji-large">${foundEmoji}</div>
@@ -635,13 +601,11 @@ function initSearch() {
                         </div>
                     </div>
                 `;
-                
                 searchResults.classList.add('active');
                 return;
             }
         }
         
-        // Если не эмодзи, обычный текстовый поиск
         if (query.length < 2) {
             searchResults.classList.remove('active');
             return;
@@ -658,10 +622,8 @@ function initSearch() {
             return;
         }
         
-        // Отображаем текстовые результаты
         searchResults.innerHTML = matches.map(item => {
             const icon = item.icon || 'images/default.jpg';
-            
             if (item.type === 'location') {
                 return `
                     <div class="search-result-item" data-char="${item.charKey}">
@@ -688,7 +650,6 @@ function initSearch() {
         
         searchResults.classList.add('active');
         
-        // Добавляем обработчики на результаты
         document.querySelectorAll('.search-result-item[data-char]').forEach(item => {
             item.addEventListener('click', function() {
                 const charKey = this.getAttribute('data-char');
@@ -702,28 +663,23 @@ function initSearch() {
         });
     }
     
-    // Удаляем старые обработчики
     const oldHandler = searchInput._searchHandler;
     if (oldHandler) {
         searchInput.removeEventListener('input', oldHandler);
     }
     
-    // Создаем новый обработчик
     searchInput._searchHandler = function(e) {
         performSearch(e.target.value);
     };
     
-    // Добавляем обработчик
     searchInput.addEventListener('input', searchInput._searchHandler);
     
-    // Закрытие по клику вне
     document.addEventListener('click', function(e) {
         if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
             searchResults.classList.remove('active');
         }
     });
     
-    // Поиск по Enter
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             const firstResult = document.querySelector('.search-result-item');
@@ -732,77 +688,16 @@ function initSearch() {
             }
         }
     });
-    
-    console.log('Поиск готов к работе');
 }
+
+// ===== ЗАПУСК (ОДИН РАЗ) =====
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM загружен');
     generateSite();
     setTimeout(() => {
         initScrollbar();
-        initSearch(); 
+        initSearch();
         console.log('Все функции инициализированы');
     }, 500);
 });
 
-
-// ===== ПРЕВЬЮ =====
-function showPreview(button) {
-    const portraitsAttr = button.getAttribute('data-portraits');
-    const namesAttr = button.getAttribute('data-names');
-    
-    if (!portraitsAttr) return;
-    
-    const portraitKeys = portraitsAttr.split(',');
-    const nameList = namesAttr ? namesAttr.split(',') : [];
-    
-    portraitsRow.innerHTML = '';
-    portraitsRow.className = 'portraits-row';
-    
-    // Добавляем класс в зависимости от количества
-    if (portraitKeys.length === 1) {
-        portraitsRow.classList.add('one-portrait');
-    } else if (portraitKeys.length === 2) {
-        portraitsRow.classList.add('two-portraits');
-    } else if (portraitKeys.length === 3) {
-        portraitsRow.classList.add('three-portraits');
-    } else if (portraitKeys.length === 4) {
-        portraitsRow.classList.add('four-portraits');
-    } else {
-        portraitsRow.classList.add('many-portraits');
-    }
-    
-    portraitKeys.forEach((key, index) => {
-        const portraitInfo = portraitImages[key.trim()];
-        if (!portraitInfo) return;
-        
-        const portraitItem = document.createElement('div');
-        portraitItem.className = 'portrait-item';
-        
-        const portraitImg = document.createElement('img');
-        portraitImg.src = portraitInfo;
-        portraitImg.alt = key;
-        portraitImg.className = 'preview-portrait';
-        
-        const namePlate = document.createElement('div');
-        namePlate.className = 'name-plate';
-        
-        const nameImg = document.createElement('img');
-        nameImg.src = 'images/char_name.png';
-        nameImg.alt = 'Рамка имени';
-        
-        const nameText = document.createElement('span');
-        nameText.className = 'name-text';
-        nameText.textContent = nameList[index] || key;
-        
-        namePlate.appendChild(nameImg);
-        namePlate.appendChild(nameText);
-        
-        portraitItem.appendChild(portraitImg);
-        portraitItem.appendChild(namePlate);
-        
-        portraitsRow.appendChild(portraitItem);
-    });
-    
-    previewContainer.classList.add('active');
-}

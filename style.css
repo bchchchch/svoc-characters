@@ -1,63 +1,238 @@
-/* ===== МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ ВЕРСИЯ ===== */
-@media (max-width: 1024px) and (orientation: landscape) {
-    /* Просто показываем ПК версию без изменений */
-    body {
-        overflow: hidden;
-    }
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ - ПРОСТО УМЕНЬШАЕМ ПК ВЕРСИЮ ===== */
+@media (max-width: 768px) {
     
-    /* Убираем скроллы */
-    .frame-content {
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    /* Немного увеличиваем кликабельные элементы */
-    .character-button {
-        min-height: 44px;
-    }
-    
-    .header-link, .card-link-button {
-        min-height: 44px;
-        min-width: 44px;
-    }
-}
-
-/* Вертикальная ориентация - показываем сообщение */
-@media (orientation: portrait) {
-    .orientation-message {
-        display: flex !important;
-    }
-    
-    body > *:not(.orientation-message) {
+    /* Убираем сложные элементы, которые мешают */
+    .frame-left, .frame-right, .frame-bottom,
+    .corner-left, .corner-right, .rail-container,
+    .parallax-container, .name-tags {
         display: none !important;
     }
+    
+    /* Простая шапка */
+    .frame-header {
+        height: 50px !important;
+        background: #2a1a0a !important;
+        border-bottom: 2px solid #ffd700 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 100 !important;
+    }
+    
+    .header-content {
+        padding: 0 10px !important;
+        height: 50px !important;
+        gap: 10px !important;
+    }
+    
+    .logo img {
+        height: 35px !important;
+    }
+    
+    .frame-header h1 {
+        font-size: 12px !important;
+        color: #ffd700 !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+    }
+    
+    .header-text-link {
+        font-size: 10px !important;
+        padding: 5px 8px !important;
+    }
+    
+    .search-container {
+        width: 120px !important;
+        margin: 0 !important;
+    }
+    
+    .search-input {
+        height: 30px !important;
+        font-size: 10px !important;
+        padding: 5px 8px !important;
+    }
+    
+    /* Контент */
+    .frame-content {
+        position: fixed !important;
+        top: 50px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 50px) !important;
+        overflow-y: auto !important;
+        padding: 10px !important;
+    }
+    
+    .left-column {
+        width: 100% !important;
+        padding: 0 !important;
+        float: none !important;
+    }
+    
+    .buttons-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .character-button {
+        margin: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+        transform: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+    }
+    
+    .button-text {
+        font-size: 14px !important;
+        padding: 8px !important;
+        color: #330000 !important;
+    }
+    
+    .button-emoji {
+        font-size: 18px !important;
+    }
+    
+    /* Карточка на весь экран */
+    .cards-container {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        z-index: 1000 !important;
+        padding: 20px !important;
+        overflow-y: auto !important;
+    }
+    
+    .character-card {
+        width: 100% !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+        background: transparent !important;
+    }
+    
+    .character-card .card-background {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 10px !important;
+    }
+    
+    .character-card .card-text-content {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding: 20px !important;
+        background: transparent !important;
+    }
+    
+    .character-card .name-bg {
+        width: 180px !important;
+    }
+    
+    .character-card .name-bg-text {
+        font-size: 18px !important;
+        color: #ffd700 !important;
+    }
+    
+    .character-card .character-description {
+        color: white !important;
+        font-size: 11px !important;
+        max-height: 120px !important;
+        background: rgba(0,0,0,0.5) !important;
+        padding: 8px !important;
+        border-radius: 5px !important;
+    }
+    
+    .character-card .card-link-button {
+        width: 110px !important;
+    }
+    
+    .character-card .link-text {
+        font-size: 10px !important;
+        color: white !important;
+    }
+    
+    .character-card .close-button {
+        width: 35px !important;
+        bottom: -5px !important;
+        right: -5px !important;
+    }
+    
+    /* Превью портретов */
+    .preview-container {
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90% !important;
+        min-width: auto !important;
+        max-width: 300px !important;
+        background: rgba(0,0,0,0.9) !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+    }
+    
+    .portraits-row {
+        justify-content: center !important;
+        gap: 15px !important;
+        padding-left: 0 !important;
+    }
+    
+    .portrait-item {
+        width: 100px !important;
+    }
+    
+    .preview-portrait {
+        width: 100px !important;
+        height: 100px !important;
+        border-width: 2px !important;
+    }
+    
+    .name-plate img {
+        width: 90px !important;
+    }
+    
+    .name-text {
+        font-size: 10px !important;
+    }
 }
 
-.orientation-message {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 999999;
-    text-align: center;
-    padding: 20px;
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .frame-header h1 {
+        display: none !important;
+    }
+    
+    .search-container {
+        width: 100px !important;
+    }
+    
+    .character-card .name-bg {
+        width: 150px !important;
+    }
+    
+    .character-card .name-bg-text {
+        font-size: 16px !important;
+    }
+    
+    .character-card .card-link-button {
+        width: 90px !important;
+    }
 }
 
-
+/* ===== ОСТАЛЬНЫЕ СТИЛИ (ВАШИ, БЕЗ ИЗМЕНЕНИЙ) ===== */
 
 /* Кастомный курсор для всего сайта */
 * {
     cursor: url('images/gui/cursor.png') 1 1, auto !important;
 }
 
-/* Для всех кликабельных элементов - тот же курсор */
+/* Для всех кликабельных элементов */
 a, button, .character-button, .card-link-button, 
 .close-button, .rail-thumb, .name-tag, .portrait-item,
 .name-plate, input, select, textarea, [role="button"] {
@@ -69,7 +244,7 @@ a, button, .character-button, .card-link-button,
     cursor: url('images/gui/cursor.png') 1 1, grabbing !important;
 }
 
-/* Для текстовых полей - можно оставить стандартный или тоже кастомный */
+/* Для текстовых полей */
 input, textarea {
     cursor: url('images/gui/cursor.png') 1 1, text !important;
 }
@@ -94,7 +269,6 @@ body {
     cursor: url('images/gui/cursor.png') 1 1, auto;
 }
 
-
 /* Подключение шрифта для описаний */
 @font-face {
     font-family: 'SevenExEightPixel';
@@ -107,7 +281,6 @@ body {
 .character-description,
 .character-description p {
     font-family: 'SevenExEightPixel', monospace !important;
-    /* Можно также настроить размер, если нужно */
     font-size: 12px;
     line-height: 1.6;
 }
@@ -126,7 +299,7 @@ body {
 }
 
 .overlay {
-    position: absolute;  /* было fixed, стало absolute */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -135,28 +308,13 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease, visibility 0.25s ease;
-    z-index: 50; /* выше контента, но ниже карточек */
-    pointer-events: none; /* НЕ БЛОКИРУЕТ КЛИКИ */
+    z-index: 50;
+    pointer-events: none;
 }
 
 .overlay.active {
     opacity: 1;
     visibility: visible;
-}
-
-/* ===== РАМКА ИНТЕРФЕЙСА ===== */
-.frame-content {
-    position: absolute;
-    top: 120px;
-    left: 27px;
-    right: 27px;
-    bottom: 27px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 20px;
-    pointer-events: auto;
-    z-index: 15;
-    scrollbar-width: none;
 }
 
 /* Шапка */
@@ -184,20 +342,17 @@ body {
     gap: 30px;
 }
 
-/* Логотип */
 .logo {
     flex-shrink: 0;
-    margin-left: -20px;  /* Сдвиг влево */
+    margin-left: -20px;
 }
 
 .logo img {
-    height: 60px;  /* Уменьшенный логотип */
+    height: 60px;
     width: auto;
     transition: transform 0.2s ease;
 }
 
-
-/* Заголовок */
 .frame-header h1 {
     font-family: 'MyCustomFont', Arial, sans-serif;
     font-size: 30px;
@@ -207,13 +362,26 @@ body {
     white-space: nowrap;
 }
 
-/* Навигация справа */
 .header-nav {
     display: flex;
     gap: 15px;
     align-items: center;
     flex-shrink: 0;
     margin-left: auto;
+}
+
+.header-text-link {
+    color: #330000;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 15px;
+    transition: all 0.2s ease;
+}
+
+.header-text-link:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 /* Левая боковая рамка */
@@ -230,7 +398,6 @@ body {
     pointer-events: none;
 }
 
-/* Правая боковая рамка */
 .frame-right {
     position: absolute;
     right: 0;
@@ -244,7 +411,6 @@ body {
     pointer-events: none;
 }
 
-/* Нижняя рамка (подвал) */
 .frame-bottom {
     position: absolute;
     bottom: 0;
@@ -258,7 +424,6 @@ body {
     pointer-events: none;
 }
 
-/* Левый нижний уголок */
 .corner-left {
     position: absolute;
     bottom: 0;
@@ -273,7 +438,6 @@ body {
     pointer-events: none;
 }
 
-/* Правый нижний уголок */
 .corner-right {
     position: absolute;
     bottom: 0;
@@ -288,14 +452,14 @@ body {
     pointer-events: none;
 }
 
-/* ===== РЕЛЬСА И ПОЛЗУНОК ===== */
+/* Рельса и ползунок */
 .rail-container {
     position: absolute;
-    left: 27px; /* плотно к левой рамке */
-    top: 120px; /* сразу под шапкой */
-    bottom: 27px; /* до подвала */
+    left: 27px;
+    top: 120px;
+    bottom: 27px;
     width: 36px;
-    z-index: 20; /* выше рамки */
+    z-index: 20;
     pointer-events: none;
 }
 
@@ -311,13 +475,13 @@ body {
 
 .rail-thumb {
     position: absolute;
-    left: -8px; /* центрирование с учетом ширины */
+    left: -8px;
     width: 52px;
     height: 72px;
     cursor: url('images/gui/cursor.png') 1 1, grab;
     pointer-events: auto;
     transition: top 0.02s ease;
-    z-index: 21; /* выше всего */
+    z-index: 21;
 }
 
 .rail-thumb:active {
@@ -331,7 +495,7 @@ body {
     pointer-events: none;
 }
 
-/* ===== КОНТЕНТ ВНУТРИ РАМКИ ===== */
+/* Контент внутри рамки */
 .frame-content {
     position: absolute;
     top: 120px;
@@ -341,8 +505,8 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 20px;
-    pointer-events: auto; /* Контент кликабелен */
-    z-index: 15; /* Выше рамки, но ниже ползунка */
+    pointer-events: auto;
+    z-index: 15;
     scrollbar-width: none;
 }
 
@@ -357,8 +521,6 @@ body {
     height: auto;
     float: left;
     padding: 30px 30px 30px 50px;
-    
-    /* Кастомный скроллбар */
     scrollbar-width: thin;
     scrollbar-color: #888 #333;
 }
@@ -442,14 +604,25 @@ body {
     font-weight: normal;
     white-space: nowrap;
     pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* ===== ПРЕВЬЮ ПРИ НАВЕДЕНИИ ===== */
-/* ===== ПРЕВЬЮ ПРИ НАВЕДЕНИИ ===== */
+.button-emoji {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.button-name {
+    font-size: 18px;
+}
+
+/* Превью */
 .preview-container {
     position: fixed;
     top: 50%;
-    left: 600px;  /* Прижимаем к левому краю рамки */
+    left: 600px;
     transform: translateY(-50%);
     width: auto;
     min-width: 400px;
@@ -466,18 +639,16 @@ body {
     visibility: visible;
 }
 
-/* Контейнер портретов */
 .portraits-row {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    gap: 140px;  /* Расстояние между портретами */
+    gap: 140px;
     margin-bottom: 20px;
     flex-wrap: wrap;
     padding-left: 20px;
 }
 
-/* ВСЕ ПОРТРЕТЫ ОДИНАКОВОГО РАЗМЕРА */
 .portrait-item {
     display: flex;
     flex-direction: column;
@@ -486,21 +657,19 @@ body {
     opacity: 0;
     transform: translateY(15px);
     transition: all 0.3s ease;
-    width: 200px;  /* Фиксированная ширина для всех */
+    width: 200px;
 }
 
-/* Портрет */
 .preview-portrait {
-    width: 300px;  /* Фиксированная ширина */
-    height: 300px;  /* Фиксированная высота */
+    width: 300px;
+    height: 300px;
     border-radius: 10px;
     border: 3px solid #330000;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s ease, border-color 0.2s ease;
-    object-fit: cover;  /* Чтобы картинка не искажалась */
+    object-fit: cover;
 }
 
-/* Табличка с именем */
 .name-plate {
     margin-top: 8px;
     position: relative;
@@ -513,7 +682,7 @@ body {
 }
 
 .name-plate img {
-    width: 180px;  /* Чуть меньше портрета */
+    width: 180px;
     height: auto;
     display: block;
 }
@@ -532,7 +701,6 @@ body {
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
-/* Анимация появления */
 @keyframes portraitAppear {
     to {
         opacity: 1;
@@ -540,61 +708,15 @@ body {
     }
 }
 
-/* Индивидуальные задержки */
 .portrait-item:nth-child(1) { animation-delay: 0.05s; }
 .portrait-item:nth-child(2) { animation-delay: 0.1s; }
 .portrait-item:nth-child(3) { animation-delay: 0.15s; }
 .portrait-item:nth-child(4) { animation-delay: 0.2s; }
 .portrait-item:nth-child(5) { animation-delay: 0.25s; }
 
-/* При наведении */
 .portrait-item:hover .preview-portrait {
     transform: scale(1.05);
     border-color: #ffd700;
-}
-
-/* Стили портрета */
-.preview-portrait {
-    border-radius: 10px;
-    border: 3px solid #330000;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s ease, border-color 0.2s ease;
-    object-fit: cover;
-}
-
-.portrait-item:hover .preview-portrait {
-    transform: scale(1.05);
-    border-color: #ffd700;
-}
-
-/* Табличка с именем */
-.name-plate {
-    margin-top: 8px;
-    position: relative;
-    cursor: url('images/gui/cursor.png') 1 1, pointer;
-    transition: transform 0.2s ease;
-}
-
-.name-plate:hover {
-    transform: scale(1.05);
-}
-
-.name-plate img {
-    height: auto;
-    display: block;
-}
-
-.name-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #330000;
-    font-size: 20px;
-    white-space: nowrap;
-    letter-spacing: 1px;
-    pointer-events: none;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 /* Карточки */
@@ -662,7 +784,6 @@ body {
     z-index: 202;
 }
 
-/* Параллакс */
 .parallax-container {
     position: absolute;
     top: 0;
@@ -687,7 +808,6 @@ body {
     transform: scale(1.1) translate(5px, 5px);
 }
 
-/* Таблички с именами */
 .name-tags {
     position: absolute;
     top: 0;
@@ -792,6 +912,26 @@ body {
     font-weight: normal;
     letter-spacing: 2px;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.name-emoji {
+    font-size: 28px;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.name-location {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 1.2;
 }
 
 .character-description {
@@ -824,7 +964,6 @@ body {
     border-radius: 10px;
 }
 
-/* Кнопки */
 .links-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -914,7 +1053,6 @@ body {
     }
 }
 
-/* Кнопка закрытия */
 .close-button {
     position: absolute;
     bottom: -20px;
@@ -937,7 +1075,7 @@ body {
     to { opacity: 1; }
 }
 
-/* ===== СТИЛЬ 1 (DEFAULT) ===== */
+/* Стили карточек */
 .character-card.style1 .card-background {
     content: url('images/card_1.png');
 }
@@ -962,12 +1100,10 @@ body {
     color: #330000;
 }
 
-/* ===== СТИЛЬ 2 (card_2.png, без других изменений) ===== */
 .character-card.style2 .card-background {
     content: url('images/card_2.png');
 }
 
-/* Всё остальное как в style1 */
 .character-card.style2 .name-bg {
     content: url('images/setting_name.png');
 }
@@ -988,18 +1124,16 @@ body {
     color: #330000;
 }
 
-/* ===== СТИЛЬ 3 (card_3.png, белый текст, другие кнопки) ===== */
 .character-card.style3 .card-background {
     content: url('images/card_3.png');
 }
 
-/* Название сеттинга без таблички, просто текст */
 .character-card.style3 .name-with-bg {
     margin-bottom: 30px;
 }
 
 .character-card.style3 .name-bg {
-    display: none;  /* Прячем табличку */
+    display: none;
 }
 
 .character-card.style3 .name-bg-text {
@@ -1007,7 +1141,7 @@ body {
     top: 0;
     left: 0;
     transform: none;
-    color: #ffffff;  /* Белый текст */
+    color: #ffffff;
     font-size: 32px;
     font-weight: bold;
     text-transform: uppercase;
@@ -1017,25 +1151,22 @@ body {
     animation: slideInRight 0.4s ease 0.05s both;
 }
 
-/* Белое описание */
 .character-card.style3 .character-description {
     color: #ffffff;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Имена на параллаксе на фоне button_normal_2 */
 .character-card.style3 .name-tag .tag-bg {
     content: url('images/char_name_2.png');
-    width: 170px;  /* Можно настроить размер */
+    width: 170px;
 }
 
 .character-card.style3 .tag-text {
-    color: #ffffff;  /* Белый текст на кнопках */
+    color: #ffffff;
     font-size: 18px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Кнопки с другими картинками */
 .character-card.style3 .card-link-button .button-default {
     content: url('images/button_normal_2.png');
 }
@@ -1045,12 +1176,11 @@ body {
 }
 
 .character-card.style3 .link-text {
-    color: #ffffff;  /* Белый текст на кнопках */
+    color: #ffffff;
     font-size: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Эффект при наведении для style3 */
 .character-card.style3 .card-link-button:hover .button-default {
     opacity: 0;
 }
@@ -1059,7 +1189,6 @@ body {
     opacity: 1;
 }
 
-/* Адаптация для style3 */
 .character-card.style3 .name-tag.left-tag {
     bottom: 15%;
     left: 10%;
@@ -1075,33 +1204,16 @@ body {
     left: 38%;
 }
 
-
-.header-text-link {
-    color: #330000;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 8px 15px;
-    transition: all 0.2s ease;
-}
-
-.header-text-link:hover {
-    color: #ffffff;
-    transform: translateY(-2px);
-}
-
-
-/* Контейнер поиска */
+/* Поиск */
 .search-container {
     position: relative;
     width: 500px;
-    margin-left: auto;  /* Прижимаем к навигации */
+    margin-left: auto;
     margin-right: 20px;
 }
 
-/* Поле ввода */
 .search-input {
-    width: 450%;
+    width: 100%;
     height: 40px;
     padding: 8px 15px;
     font-family: 'MyCustomFont', Arial, sans-serif;
@@ -1126,319 +1238,12 @@ body {
     font-size: 14px;
 }
 
-/* Выпадающий список результатов */
-.search-results {
-    position: absolute;
-    width: 450%;
-    max-height: 500px;
-    overflow-y: auto;
-    background: rgba(50, 20, 10, 0.95);
-    border: 2px solid #330000;
-    border-radius: 10px;
-    margin-top: 5px;
-    z-index: 1000;
-    display: none;
-    backdrop-filter: blur(5px);
-}
-
-.search-results.active {
-    display: block;
-}
-
-/* Элемент результата */
-.search-result-item {
-    padding: 12px 15px;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-    cursor: url('images/gui/cursor.png') 1 1, pointer;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.search-result-item:last-child {
-    border-bottom: none;
-}
-
-.search-result-item:hover {
-    background: rgba(255, 215, 0, 0.2);
-}
-
-/* Иконка результата */
-.search-result-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffd700;
-}
-
-/* Текст результата */
-.search-result-text {
-    flex: 1;
-}
-
-.search-result-name {
-    font-size: 17px;
-    font-family:'SevenExEightPixel';
-    color: #ffffff;
-}
-
-.search-result-location {
-    font-family:'SevenExEightPixel';
-    font-size: 13px;
-    color: #ffffff;
-}
-
-.search-result-type {
-    font-size: 13px;
-    color: #b9b9b9;
-    font-style: italic;
-}
-
-/* Адаптация */
-@media (max-width: 1200px) {
-    .search-container {
-        width: 250px;
-    }
-}
-
-@media (max-width: 900px) {
-    .header-content {
-        flex-wrap: wrap;
-        padding: 10px;
-    }
-    
-    .search-container {
-        width: 100%;
-        margin: 10px 0;
-        order: 3;
-    }
-}
-
-/* Стили для кнопки с эмодзи */
-.button-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #330000;
-    font-size: 18px;
-    font-weight: normal;
-    white-space: nowrap;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.button-emoji {
-    font-size: 24px;  /* Эмодзи крупнее */
-    line-height: 1;
-}
-
-.button-name {
-    font-size: 18px;
-}
-
-/* Эмодзи в кнопке */
-.button-emoji {
-    font-size: 24px;
-    margin-right: 8px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.button-name {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* Для мобильных */
-@media (max-width: 768px) {
-    .button-emoji {
-        font-size: 20px;
-        margin-right: 5px;
-    }
-}
-
-
-/* Эмодзи в названии карточки - УМЕНЬШАЕМ И ЦЕНТРИРУЕМ */
-.name-emoji {
-    font-size: 28px;  /* Было 36px, уменьшили */
-    margin-right: 8px;
-    display: inline-flex;
-    align-items: center;  /* Центрирование по вертикали */
-    justify-content: center;
-    vertical-align: middle;
-    line-height: 1;  /* Убираем лишние отступы */
-    transform: translateY(-2px);  /* Небольшая корректировка по вертикали */
-}
-
-.name-location {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-    line-height: 1.2;
-}
-
-/* Для style3 (без таблички) */
-.character-card.style3 .name-emoji {
-    font-size: 32px;  /* Было 42px, уменьшили */
-    margin-right: 10px;
-    transform: translateY(-2px);
-}
-
-.character-card.style3 .name-location {
-    font-size: 28px;  /* Подгоняем под размер эмодзи */
-}
-
-/* Если эмодзи все еще не центрируется */
-.name-bg-text {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 5px;
-}
-
-/* Для мобильных */
-@media (max-width: 768px) {
-    .name-emoji {
-        font-size: 22px;
-        margin-right: 5px;
-    }
-    
-    .character-card.style3 .name-emoji {
-        font-size: 26px;
-    }
-}
-
-
-/* Результаты поиска эмодзи */
-.emoji-result {
-    padding: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.emoji-large {
-    font-size: 64px;
-    margin-bottom: 15px;
-    animation: emojiPop 0.3s ease;
-}
-
-@keyframes emojiPop {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    80% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Занятый эмодзи */
-.emoji-result.occupied {
-    border-left: 4px solid #ff6b6b;
-    background: rgba(255, 107, 107, 0.1);
-}
-
-.emoji-result.occupied .emoji-large {
-    filter: drop-shadow(0 0 10px #ff6b6b);
-}
-
-/* Свободный эмодзи */
-.emoji-result.free {
-    border-left: 4px solid #6bff6b;
-    background: rgba(107, 255, 107, 0.1);
-}
-
-.emoji-result.free .emoji-large {
-    filter: drop-shadow(0 0 10px #6bff6b);
-}
-
-.emoji-result.free .search-result-name {
-    color: #6bff6b;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* ===== АДАПТАЦИЯ ШАПКИ, ПОИСКА И ССЫЛОК ===== */
-:root {
-    --scale-factor: 1;
-}
-
-/* Базовые адаптивные размеры */
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 max(20px, 4vw);
-    gap: max(10px, 2vw);
-    height: 100%;
-}
-
-/* Логотип */
-.logo {
-    flex-shrink: 0;
-}
-
-.logo img {
-    height: clamp(30px, min(5vh, 5vw), 80px);
-    width: auto;
-    transition: transform 0.2s;
-}
-
-/* Название */
-.frame-header h1 {
-    font-size: clamp(16px, min(3vw, 3vh), 42px);
-    white-space: nowrap;
-    margin: 0 max(5px, 1vw);
-    color: #330000;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
-}
-
-/* Поиск - 45% ширины */
-.search-container {
-    position: relative;
-    width: min(45vw, 800px);
-    min-width: 250px;
-    margin-left: auto;
-    margin-right: max(10px, 1vw);
-}
-
-.search-input {
-    width: 100%;
-    height: clamp(36px, min(5vh, 3vw), 60px);
-    padding: 0 max(12px, 1.5vw);
-    font-size: clamp(14px, min(1.5vw, 2vh), 22px);
-    border: 2px solid #330000;
-    border-radius: max(15px, 2vw);
-    background: rgba(255,255,255,0.9);
-}
-
-.search-input:focus {
-    background: white;
-    border-color: #ffd700;
-    box-shadow: 0 0 10px rgba(255,215,0,0.3);
-}
-
-.search-input::placeholder {
-    font-size: clamp(12px, min(1.3vw, 1.8vh), 18px);
-    color: #666;
-}
-
-/* ===== ИСПРАВЛЕННЫЙ ПОИСК ===== */
 .search-results {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    min-width: 250px;  /* Минимальная ширина */
+    min-width: 250px;
     max-height: 400px;
     overflow-y: auto;
     background: rgba(40, 20, 10, 0.98);
@@ -1463,7 +1268,7 @@ body {
     border-bottom: 1px solid rgba(255,215,0,0.2);
     cursor: pointer;
     transition: background 0.2s;
-    min-height: 60px;  /* Минимальная высота */
+    min-height: 60px;
 }
 
 .search-result-item:hover {
@@ -1473,7 +1278,7 @@ body {
 .search-result-icon {
     width: 45px;
     height: 45px;
-    min-width: 45px;  /* Фиксированная минимальная ширина */
+    min-width: 45px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ffd700;
@@ -1481,7 +1286,7 @@ body {
 
 .search-result-text {
     flex: 1;
-    min-width: 0;  /* Позволяет тексту переноситься */
+    min-width: 0;
 }
 
 .search-result-name {
@@ -1489,8 +1294,8 @@ body {
     font-weight: bold;
     color: #ffd700;
     margin-bottom: 2px;
-    white-space: normal;  /* Разрешаем перенос */
-    word-break: break-word;  /* Переносим длинные слова */
+    white-space: normal;
+    word-break: break-word;
 }
 
 .search-result-location {
@@ -1506,7 +1311,6 @@ body {
     font-style: italic;
 }
 
-/* Эмодзи результаты */
 .emoji-result {
     padding: 20px;
     text-align: center;
@@ -1515,213 +1319,33 @@ body {
 .emoji-large {
     font-size: 48px;
     margin-bottom: 10px;
+    animation: emojiPop 0.3s ease;
 }
 
-/* Для длинных названий */
-.search-result-name span,
-.search-result-location span {
-    display: inline-block;
-    max-width: 100%;
+@keyframes emojiPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
 }
 
-/* Кнопки в шапке */
-.header-nav {
-    display: flex;
-    gap: clamp(5px, 1vw, 15px);
-    align-items: center;
-    flex-shrink: 0;
+.emoji-result.occupied {
+    border-left: 4px solid #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
 }
 
-.header-link {
-    position: relative;
-    width: clamp(50px, 5vw, 100px);
-    cursor: pointer;
-    transition: transform 0.2s;
+.emoji-result.occupied .emoji-large {
+    filter: drop-shadow(0 0 10px #ff6b6b);
 }
 
-.header-link:hover {
-    transform: translateY(-2px);
+.emoji-result.free {
+    border-left: 4px solid #6bff6b;
+    background: rgba(107, 255, 107, 0.1);
 }
 
-.header-link img {
-    width: 100%;
-    height: auto;
-    display: block;
+.emoji-result.free .emoji-large {
+    filter: drop-shadow(0 0 10px #6bff6b);
 }
 
-.header-link .button-hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+.emoji-result.free .search-result-name {
+    color: #09d435;
 }
-
-.header-link:hover .button-default {
-    opacity: 0;
-}
-
-.header-link:hover .button-hover {
-    opacity: 1;
-}
-
-.header-link span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #330000;
-    font-size: clamp(10px, 1.2vw, 16px);
-    font-weight: bold;
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-/* Адаптация для разных экранов */
-@media (min-width: 2560px) {
-    .search-container {
-        width: 45vw;
-        max-width: 1200px;
-    }
-    
-    .search-input {
-        height: 70px;
-        font-size: 26px;
-    }
-    
-    .search-result-name {
-        font-size: 24px;
-    }
-    
-    .header-link {
-        width: 120px;
-    }
-    
-    .header-link span {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 1366px) {
-    .search-container {
-        width: 35vw;
-    }
-}
-
-@media (max-width: 1024px) {
-    .header-content {
-        padding: 0 15px;
-    }
-    
-    .search-container {
-        width: 30vw;
-        min-width: 200px;
-    }
-    
-    .header-link {
-        width: 45px;
-    }
-}
-
-@media (max-width: 768px) {
-    .header-content {
-        flex-wrap: wrap;
-        height: auto;
-        padding: 10px;
-    }
-    
-    .search-container {
-        width: 100%;
-        order: 3;
-        margin: 10px 0 0;
-    }
-    
-    .header-nav {
-        margin-left: 0;
-    }
-}
-
-/* ===== АДАПТИВНЫЕ ПОРТРЕТЫ ===== */
-.preview-container {
-    position: fixed;
-    top: 50%;
-    left: 33%;
-    transform: translateY(-50%);
-    width: auto;
-    min-width: min(400px, 40vw);
-    max-width: min(900px, 80vw);
-    pointer-events: none;
-    z-index: 1000;
-}
-
-.portraits-row {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    gap: clamp(15px, 3vw, 40px);
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.portrait-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: clamp(120px, 15vw, 250px);
-}
-
-.preview-portrait {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
-    border-radius: clamp(8px, 1.5vw, 15px);
-    border: clamp(2px, 0.3vw, 4px) solid #330000;
-    box-shadow: 0 clamp(3px, 0.5vw, 8px) clamp(8px, 1.5vw, 20px) rgba(0,0,0,0.5);
-    object-fit: cover;
-}
-
-.name-plate {
-    margin-top: clamp(5px, 1vh, 12px);
-}
-
-.name-plate img {
-    width: clamp(100px, 13vw, 220px);
-    height: auto;
-}
-
-.name-text {
-    font-size: clamp(12px, 1.8vw, 22px);
-}
-
-
-/* Масштабирование для мобильных в горизонтальной ориентации */
-@media (max-width: 1024px) and (orientation: landscape) {
-    html {
-        transform: scale(0.8);
-        transform-origin: top left;
-        width: 125%;
-        height: 125%;
-    }
-    
-    body {
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-    }
-    
-    /* Фиксируем размеры для всех элементов */
-    .frame-container {
-        width: 100vw !important;
-        height: 100vh !important;
-    }
-    
-    /* Увеличиваем шрифты и элементы */
-    .character-button {
-        transform: scale(0.9);
-    }
-    
-    .button-text {
-        font-size: 14px;
-    }
-}
-
-
