@@ -101,6 +101,7 @@ const portraitImages = {
 function generateSite() {
     const buttonsContainer = document.getElementById('buttonsContainer');
     const cardsContainer = document.getElementById('cardsContainer');
+    const isMobile = false;
     
     if (!buttonsContainer || !cardsContainer) {
         console.error('Контейнеры не найдены');
