@@ -157,20 +157,29 @@ function updateElementReferences() {
 
 function attachEventListeners() {
     function closeAll() {
-        if (isClosing) return;
-        cards.forEach(card => {
-            if (card.classList.contains('active')) {
-                card.classList.add('closing');
-                card.classList.remove('active');
-            }
-        });
-        isClosing = true;
-        if (overlay) overlay.classList.remove('active');
-        setTimeout(() => {
-            cards.forEach(card => card.classList.remove('closing'));
-            isClosing = false;
-        }, 200);
+    if (isClosing) return;
+    
+    cards.forEach(card => {
+        if (card.classList.contains('active')) {
+            card.classList.add('closing');
+            card.classList.remove('active');
+        }
+    });
+    
+    isClosing = true;
+    
+    // Закрываем затемнение
+    if (overlay) {
+        overlay.classList.remove('active');
     }
+    
+    setTimeout(() => {
+        cards.forEach(card => {
+            card.classList.remove('closing');
+        });
+        isClosing = false;
+    }, 200);
+}
     
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
