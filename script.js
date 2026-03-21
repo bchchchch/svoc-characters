@@ -390,7 +390,7 @@ function generateSite() {
             
             <div class="links-container">
                 <div class="links-left">
-                    <a href="${data.links.album}" target="_blank" class="card-link-button">
+                    <a href="#" onclick="openVKLink('${data.links.album}'); return false;" class="card-link-button">
                         <img src="images/button_normal.png" alt="Кнопка" class="button-default">
                         <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
                         <span class="link-text">Альбом</span>
