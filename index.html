@@ -1,98 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Персонажи</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Test</title>
 </head>
-<body>
-
-    <!-- Фон сайта -->
-    <div class="background"></div>
-
-    <!-- ===== РАМКА ИНТЕРФЕЙСА ===== -->
-    <div class="frame-container">
-        
-        <!-- Затемнение ВНУТРИ рамки -->
-        <div class="overlay" id="overlay"></div>
-        
-        <!-- Левая боковая рамка -->
-        <div class="frame-left"></div>
-        
-        <!-- Правая боковая рамка -->
-        <div class="frame-right"></div>
-        
-        <!-- Нижняя рамка (подвал) -->
-        <div class="frame-bottom"></div>
-        
-        <!-- Левый нижний уголок -->
-        <div class="corner-left"></div>
-        
-        <!-- Правый нижний уголок -->
-        <div class="corner-right"></div>
-        
-        <!-- РЕЛЬСА И ПОЛЗУНОК -->
-        <div class="rail-container">
-            <div class="rail-track" id="scrollTrack">
-                <div class="rail-thumb" id="scrollThumb">
-                    <img src="images/gui/slider_2.png" alt="Ползунок">
-                </div>
-            </div>
-        </div>
-        
-        <!-- КОНТЕНТ ВНУТРИ РАМКИ -->
-        <div class="frame-content" id="frameContent">
-            
-            <!-- Левая колонка с кнопками -->
-            <div class="left-column">
-                <div class="buttons-container" id="buttonsContainer"></div>
-            </div>
-
-            <!-- ПРЕВЬЮ ПРИ НАВЕДЕНИИ -->
-            <div class="preview-container" id="previewContainer">
-                <div class="portraits-row" id="portraitsRow"></div>
-            </div>
-            
-        </div> <!-- конец frame-content -->
-        
-        <!-- КАРТОЧКИ - ТОЖЕ ВНУТРИ РАМКИ, НО ПОВЕРХ КОНТЕНТА -->
-        <div class="cards-container" id="cardsContainer"></div>
-        
-    </div> <!-- конец frame-container -->
-
-    <script src="script.js"></script>
+<body style="background: black; color: white; font-size: 40px; text-align: center; padding: 50px;">
+    <h1>САЙТ РАБОТАЕТ</h1>
+    <p>Если вы видите это на телефоне — проблема в вашем основном коде</p>
+    <p>Если не видите — проблема в хостинге</p>
+    <script>
+        console.log('JS работает');
+        document.body.style.backgroundColor = 'darkgreen';
+    </script>
 </body>
 </html>
-
-<!-- Сообщение о повороте -->
-<div class="orientation-overlay">
-    <div class="rotate-icon">📱</div>
-    <h2>Поверните устройство</h2>
-    <p>Сайт работает только в горизонтальном режиме</p>
-</div>
-
-<!-- Шапка -->
-<div class="frame-header">
-    <div class="header-content">
-        <!-- Логотип слева -->
-        <div class="logo">
-            <img src="images/logo.png" alt="Логотип">
-        </div>
-        
-        <!-- Заголовок по центру (можно убрать если не нужен) -->
-        <h1>Stardew Valley OC | Навигация по персонажам</h1>
-        
-       <div class="header-nav">
-    <a href="https://vk.com/stardewoc" target="_blank" class="header-text-link">Группа в ВК</a>
-    <a href="https://vk.com/board236063317" target="_blank" class="header-text-link">Альбомы</a>
-    <a href="https://vk.com/albums-236063317" target="_blank" class="header-text-link">Обсуждения</a>
-</div>
-    <!-- Поле поиска -->
-<div class="search-container">
-    <input type="text" class="search-input" id="searchInput" placeholder="Поиск локации, персонажа или эмодзи...">
-    <div class="search-results" id="searchResults"></div>
-</div>
-    </div>
-</div>
