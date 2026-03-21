@@ -389,26 +389,27 @@ function generateSite() {
             </div>
             
             <div class="links-container">
-    <div class="links-left">
-        <a href="#" onclick="openVKLink('${data.links.album}'); return false;" class="card-link-button">
-            <img src="images/button_normal_2.png" alt="Кнопка" class="button-default">
-            <img src="images/button_hover_2.png" alt="Кнопка" class="button-hover">
-            <span class="link-text">Альбом</span>
-        </a>
-        <a href="#" onclick="openVKLink('${data.links.discussion}'); return false;" class="card-link-button">
-            <img src="images/button_normal_2.png" alt="Кнопка" class="button-default">
-            <img src="images/button_hover_2.png" alt="Кнопка" class="button-hover">
-            <span class="link-text">Обсуждение</span>
-        </a>
-    </div>
-    <div class="links-right">
-        <a href="#" onclick="openVKLink('${data.links.lore}'); return false;" class="card-link-button">
-            <img src="images/button_normal_2.png" alt="Кнопка" class="button-default">
-            <img src="images/button_hover_2.png" alt="Кнопка" class="button-hover">
-            <span class="link-text">Лорная статья</span>
-        </a>
-    </div>
-</div>
+                <div class="links-left">
+                    <a href="${data.links.album}" target="_blank" class="card-link-button">
+                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                        <span class="link-text">Альбом</span>
+                    </a>
+                    <a href="${data.links.discussion}" target="_blank" class="card-link-button">
+                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                        <span class="link-text">Обсуждение</span>
+                    </a>
+                </div>
+                <div class="links-right">
+                    <a href="${data.links.lore}" target="_blank" class="card-link-button">
+                        <img src="images/button_normal.png" alt="Кнопка" class="button-default">
+                        <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
+                        <span class="link-text">Лорная статья</span>
+                    </a>
+                </div>
+            </div>
+        </div>
         
         <img src="images/back.png" alt="Закрыть" class="close-button">
     `;
@@ -451,26 +452,28 @@ function generateSite() {
                     </div>
                     
                     <div class="links-container">
-    <div class="links-left">
-        <a href="#" onclick="openVKLink('${data.links.album}'); return false;" class="card-link-button">
-            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-            <span class="link-text">Альбом</span>
-        </a>
-        <a href="#" onclick="openVKLink('${data.links.discussion}'); return false;" class="card-link-button">
-            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-            <span class="link-text">Обсуждение</span>
-        </a>
-    </div>
-    <div class="links-right">
-        <a href="#" onclick="openVKLink('${data.links.lore}'); return false;" class="card-link-button">
-            <img src="images/button_normal.png" alt="Кнопка" class="button-default">
-            <img src="images/button_hover.png" alt="Кнопка" class="button-hover">
-            <span class="link-text">Лорная статья</span>
-        </a>
-    </div>
-</div>
+                        <div class="links-left">
+                            <a href="${data.links.album}" target="_blank" class="card-link-button">
+                                <img src="images/button_normal_2.png" alt="Кнопка" class="button-default">
+                                <img src="images/button_hover_2.png" alt="Кнопка" class="button-hover">
+                                <span class="link-text">Альбом</span>
+                            </a>
+                            <a href="${data.links.discussion}" target="_blank" class="card-link-button">
+                                <img src="images/button_normal_2.png" alt="Кнопка" class="button-default">
+                                <img src="images/button_hover_2.png" alt="Кнопка" class="button-hover">
+                                <span class="link-text">Обсуждение</span>
+                            </a>
+                        </div>
+                        <div class="links-right">
+                            <a href="${data.links.lore}" target="_blank" class="card-link-button">
+                                <img src="images/button_normal_2.png" alt="Кнопка" class="button-default">
+                                <img src="images/button_hover_2.png" alt="Кнопка" class="button-hover">
+                                <span class="link-text">Лорная статья</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
                 <img src="images/back.png" alt="Закрыть" class="close-button">
             `;
         }
