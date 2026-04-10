@@ -2118,3 +2118,69 @@ body {
     font-weight: normal !important;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
+
+
+.emoji-result.occupied .search-result-type {
+    font-size: 20px; 
+    }
+
+    /* Отдельный контейнер для случайной кнопки */
+.random-button-container {
+    margin-bottom: 50px;  /* Вертикальный зазор */
+    padding-bottom: 15px;
+}
+
+/* Стиль кнопки случайного сеттинга (как у обычных) */
+.random-button {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 0 0 20px;
+    cursor: url('images/gui/cursor.png') 1 1, pointer;
+    transition: transform 0.25s ease;
+}
+
+.random-button:hover {
+    transform: translateX(10px);
+}
+
+.random-button img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.random-button .button-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.random-button:hover .button-default {
+    opacity: 0;
+}
+
+.random-button:hover .button-hover {
+    opacity: 1;
+}
+
+.random-button .button-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #330000;
+    font-size: 18px;
+    font-weight: normal;
+    white-space: nowrap;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.random-button .button-emoji {
+    font-size: 24px;
+}

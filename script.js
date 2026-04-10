@@ -69,8 +69,8 @@ const charactersData = {
     },
 
     "char5": {
-        buttonName: "Сансет Бэй",  // УБРАЛ ПРОБЕЛ В НАЧАЛЕ
-        locationName: "Сансет Бэй", // УБРАЛ ПРОБЕЛ В НАЧАЛЕ
+        buttonName: "Сансет Бэй", 
+        locationName: "Сансет Бэй", 
         emoji: "🌅",
         description: "Как часто судьба подкидывает нам интересные встречи и хитросплетения путей? Как многие выбираются из воды сухими? Ферма «Роуз Харт» в районе округа Сансет Бэй, что в Пеликане – тихое местечко со своими секретами. Жители Пеликана хорошо знают Джулс, но совершенно не знают, чего стоило ей обрести покой в том виде, который она имеет сейчас. Однако, покой ли это? Жизнь в маленьком городке, работа изо дня в день, избитый график – это все смешивается с человеческими взаимоотношениями, которые, будто молодой росток, пробиваются вверх к свету сквозь толстый слой пепла. За стабильностью и ясностью кроются призраки прошлого, преследующие девушку и по сей день. Вот только «палки в колеса» вставляет и настоящее. После долгой ночи всегда поднимается солнце, но поднимется ли оно в этот раз?",
         portraits: ["juls"],
@@ -95,12 +95,11 @@ const charactersData = {
     parallaxNames: ["Томас", "Аки"],
     parallaxPositions: ["left", "right"],
     links: {
-        album: "#",
+        album: "https://vk.com/album-236063317_309325287",
         discussion: "https://vk.com/topic-236063317_57282880",
         lore: "https://vk.com/@stardewoc-oblachnye-prerii-tomas-aki"
     },
-    cardStyle: "style1-nopar",
-    nopar: true,
+    cardStyle: "style1",
     parallaxImg: "images/parallax/cloudy_meadows.jpg"
     },
 
@@ -113,12 +112,11 @@ const charactersData = {
     parallaxNames: ["Микото", "Канэсён", "Вилсон"],
     parallaxPositions: ["left", "right", "center"],
     links: {
-        album: "#",
+        album: "https://vk.com/album-236063317_309020866",
         discussion: "https://vk.com/topic-236063317_57282926",
         lore: "https://vk.com/@stardewoc-ferma-huevaya-mikoto-kanesen-vilson"
     },
-    cardStyle: "style1-nopar",
-    nopar: true,
+    cardStyle: "style1",
     parallaxImg: "images/parallax/hueva_farm.jpg"
     },
 
@@ -131,7 +129,7 @@ const charactersData = {
     parallaxNames: ["Анезис", "Феликс"],
     parallaxPositions: ["left", "right"],
     links: {
-        album: "#",
+        album: "https://vk.com/album-236063317_309020797",
         discussion: "https://vk.com/topic-236063317_57312342",
         lore: "https://vk.com/@stardewoc-izalkain-anezis-feliks"
     },
@@ -149,7 +147,7 @@ const charactersData = {
     links: {
         album: "https://vk.com/album-236063317_309020906",
         discussion: "https://vk.com/topic-236063317_57240018",
-        lore: "#"
+        lore: "https://vk.com/@stardewoc-mirnoe-rancho-melon"
     },
     cardStyle: "style2",
     parallaxImg: "images/parallax/peaceful_ranch.jpg"
@@ -181,7 +179,7 @@ const charactersData = {
     links: {
         album: "https://vk.ru/album-236063317_309020879",
         discussion: "https://vk.com/topic-236063317_57282918",
-        lore: "#"
+        lore: "#vk.com/@stardewoc-ferma-dzen-molli"
     },
     cardStyle: "style2-nopar",
     parallaxImg: "images/parallax/zen_farm.jpg"
@@ -197,7 +195,7 @@ const charactersData = {
     links: {
         album: "https://vk.com/album-236063317_309020899",
         discussion: "https://vk.com/topic-236063317_57349757",
-        lore: "#"
+        lore: "https://vk.com/@stardewoc-valdhav-morten-eiravel"
     },
     cardStyle: "style1-nopar",
     parallaxImg: "images/parallax/waldhav.jpg"
@@ -231,7 +229,7 @@ const charactersData = {
         discussion: "https://vk.com/topic-236063317_57330947",
         lore: "https://vk.com/@stardewoc-sobachya-budka-vanilin"
     },
-    cardStyle: "style1-nopar",
+    cardStyle: "style1",
     parallaxImg: "images/parallax/doghouse.jpg"
 },
 "char15": {
@@ -249,6 +247,38 @@ const charactersData = {
     },
     cardStyle: "style2",
     parallaxImg: "images/parallax/hell_farm.jpg"
+},
+"char16": {
+    buttonName: "Горная Ферма",
+    locationName: "Горная ферма",
+    emoji: "🧸",
+    description: "Издревле горы были жестоки к тем, кто надеялся их покорить. Эта черта была присуща и жителям горных вершин, обитавшим в долине Стардью, а в особенности девушке, чьи годы размеренно протекали на крутых заснеженных склонах. Скучающая Галатея была бы рада ответить на вопросы желающих, ведь она так давно ни с кем не общалась.",
+    portraits: ["galatea"],
+    parallaxNames: ["Галатея"],
+    parallaxPositions: ["center"],
+    links: {
+        album: "https://vk.com/album-236063317_309350951",
+        discussion: "https://vk.com/topic-236063317_57379582",
+        lore: "https://vk.com/@stardewoc-gornaya-ferma-galateya"
+    },
+    cardStyle: "style1",
+    parallaxImg: "images/parallax/mountain_farm.jpg"
+},
+"char17": {
+    buttonName: "Звездное Серебро",
+    locationName: "Звездное Серебро",
+    emoji: "🌌",
+    description: "Долина Звездной росы - место, сочетающее в себе противоречивое - многовековую историю народов, клубящуюся тенями под ногами у небольшого, сравнительно молодого городка, называющегося Пеликан, магию, обузданную немногими и механизмы, упрощающие жизнь многим жителям этого места. Именно в этом месте живут Таэль и Фаэрин, тень былого прошлого среди людей, не знакомых с этим прошлым, эльфы, объединенные дружбой из-за трагедии их племени. Они знают о Долине то, что не знают большинство жителей, однако, их знания обрывочны, неполны. Быть может, с их помощью вы сможете докопаться до истины того, что из себя представляет место, названное Долиной Звездной росы?",
+    portraits: ["faerin", "tael"],
+    parallaxNames: ["Таэль","Фаэрин"],
+    parallaxPositions: ["left", "right"],
+    links: {
+        album: "https://vk.com/album-236063317_309020930",
+        discussion: "https://vk.com/topic-236063317_57380999",
+        lore: "https://vk.com/@stardewoc-zvezdnoe-serebro-tael-faerin"
+    },
+    cardStyle: "style1-nopar",
+    parallaxImg: "images/parallax/silver_star.jpg"
 },
 }; 
 
@@ -278,6 +308,9 @@ const portraitImages = {
     "wilson": "images/portraits/wilson.jpg",
     "thomas": "images/portraits/thomas.jpg",
     "aki": "images/portraits/aki.jpg",
+    "galatea": "images/portraits/galatea.jpg",
+    "faerin": "images/portraits/faerin.jpg",
+    "tael": "images/portraits/tael.jpg",
 };
 
 
@@ -784,6 +817,56 @@ function initSearch() {
     
     console.log('Поиск инициализирован');
     
+    // Функция нормализации эмодзи (убирает вариативные селекторы)
+    function normalizeEmoji(emoji) {
+        if (!emoji) return '';
+        // Убираем символ вариации (U+FE0F)
+        return emoji.replace(/\uFE0F/g, '');
+    }
+    
+    // Функция проверки, являются ли эмодзи похожими
+function isSimilarEmoji(emoji1, emoji2) {
+    // Нормализуем оба эмодзи
+    const norm1 = normalizeEmoji(emoji1);
+    const norm2 = normalizeEmoji(emoji2);
+    
+    const similarGroups = [
+        ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'],
+        
+        ['☁', '☁️', '🌤', '⛅', '🌥', '🌦', '🌧', '🌨', '🌩', '🌪', '🌫', '🌬'],
+
+        ['⛏', '⛏️', '🔨', '⚒️'],
+        
+        ['❄', '❄️', '❅', '❆'],
+        
+        ['💌', '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💘', '💝', '💖', '💗', '💓', '💞', '💕'],
+        
+        ['🪴', '🌱', '🌿', '☘️', '🍀'],
+
+        ['🔑', '🗝️', '🔐'],
+        
+        ['💣', '🧨', '💥'],
+        
+        ['🪸', '🐚', '🐠', '🐟', '🐡'],
+        
+        ['🎀', '🎗️', '🎁'],
+
+        ['🌅', '🌄', '🌇', '🌆'],
+
+        ['✨', '⭐', '🌟', '💫'],
+
+        ['🌌', '🌠', '🌃'],
+    ];
+    
+    for (const group of similarGroups) {
+        const groupNorm = group.map(normalizeEmoji);
+        if (groupNorm.includes(norm1) && groupNorm.includes(norm2)) {
+            return true;
+        }
+    }
+    return false;
+}
+    
     // Собираем все данные для поиска
     const searchData = [];
     const emojiMap = new Map();
@@ -800,6 +883,12 @@ function initSearch() {
         
         // Сохраняем эмодзи в карту
         if (data.emoji) {
+            const normalizedEmoji = normalizeEmoji(data.emoji);
+            emojiMap.set(normalizedEmoji, {
+                charKey: charKey,
+                name: data.locationName,
+                icon: data.parallaxImg || 'images/mark.jpg'
+            });
             emojiMap.set(data.emoji, {
                 charKey: charKey,
                 name: data.locationName,
@@ -830,18 +919,32 @@ function initSearch() {
     function isEmoji(char) {
         if (!char) return false;
         
+        const normalized = normalizeEmoji(char);
+        
+        if (emojiMap.has(normalized) || emojiMap.has(char)) return true;
+        
         const codePoint = char.codePointAt(0);
         
-        // Диапазоны эмодзи
-        return (
-            (codePoint >= 0x1F300 && codePoint <= 0x1F5FF) ||
-            (codePoint >= 0x1F600 && codePoint <= 0x1F64F) ||
-            (codePoint >= 0x1F680 && codePoint <= 0x1F6FF) ||
-            (codePoint >= 0x2600 && codePoint <= 0x26FF) ||
-            (codePoint >= 0x2700 && codePoint <= 0x27BF) ||
-            char === '🌾' || char === '🌲' || char === '⛰️' ||
-            char === '🏔️' || char === '🌳' || char === '🏕️'
-        );
+        const ranges = [
+            (codePoint >= 0x1F300 && codePoint <= 0x1F5FF),
+            (codePoint >= 0x1F600 && codePoint <= 0x1F64F),
+            (codePoint >= 0x1F680 && codePoint <= 0x1F6FF),
+            (codePoint >= 0x2600 && codePoint <= 0x26FF),
+            (codePoint >= 0x2700 && codePoint <= 0x27BF),
+            (codePoint >= 0x1F900 && codePoint <= 0x1F9FF),
+            (codePoint >= 0x1FA70 && codePoint <= 0x1FAFF),
+            (codePoint >= 0x1F000 && codePoint <= 0x1F02F),
+            (codePoint >= 0x1F0A0 && codePoint <= 0x1F0FF),
+        ];
+        
+        if (ranges.some(v => v === true)) return true;
+        
+        const yourEmojis = [
+            '🔑', '⛏', '⛏️', '🌓', '🪴', '🌅', '☁', '☁️', '✨', '❄', '❄️', '🍈', 
+            '🐾', '💌', '🦋', '🪸', '🎀', '💣', '🧸', '🌌'
+        ];
+        
+        return yourEmojis.includes(normalized) || yourEmojis.includes(char);
     }
     
     // Функция поиска
@@ -853,7 +956,6 @@ function initSearch() {
         
         console.log('Поиск по запросу:', query);
         
-        // Проверяем, является ли запрос эмодзи
         const chars = Array.from(query);
         let foundEmoji = null;
         
@@ -864,13 +966,18 @@ function initSearch() {
             }
         }
         
-        // Если нашли эмодзи
         if (foundEmoji) {
             console.log('Найден эмодзи в запросе:', foundEmoji);
             
-            if (emojiMap.has(foundEmoji)) {
-                // Эмодзи занят
-                const data = emojiMap.get(foundEmoji);
+            const normalizedFound = normalizeEmoji(foundEmoji);
+            let emojiData = emojiMap.get(foundEmoji);
+            if (!emojiData) {
+                emojiData = emojiMap.get(normalizedFound);
+            }
+            
+            if (emojiData) {
+                // Точное совпадение
+                const data = emojiData;
                 searchResults.innerHTML = `
                     <div class="search-result-item emoji-result occupied" data-char="${data.charKey}">
                         <div class="emoji-large">${foundEmoji}</div>
@@ -881,7 +988,6 @@ function initSearch() {
                     </div>
                 `;
                 
-                // Добавляем обработчик
                 const resultItem = searchResults.querySelector('.emoji-result.occupied');
                 if (resultItem) {
                     resultItem.addEventListener('click', function() {
@@ -898,6 +1004,45 @@ function initSearch() {
                 searchResults.classList.add('active');
                 return;
             } else {
+                // Проверяем на похожие эмодзи
+                let similarData = null;
+                let similarEmoji = null;
+                for (let [key, value] of emojiMap) {
+                    if (isSimilarEmoji(foundEmoji, key)) {
+                        similarData = value;
+                        similarEmoji = key;
+                        break;
+                    }
+                }
+                
+                if (similarData) {
+                    searchResults.innerHTML = `
+                        <div class="search-result-item emoji-result occupied" data-char="${similarData.charKey}">
+                            <div class="emoji-large">${foundEmoji}</div>
+                            <div class="search-result-text">
+                                <div class="search-result-name">${similarData.name}</div>
+                                <div class="search-result-type" style="color: #ffaa00;">⚠️ Похож на занятый эмодзи. Уточните у админов возможность использования. (${similarEmoji})</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    const resultItem = searchResults.querySelector('.emoji-result.occupied');
+                    if (resultItem) {
+                        resultItem.addEventListener('click', function() {
+                            const charKey = this.getAttribute('data-char');
+                            const button = document.querySelector(`.character-button[data-character="${charKey}"]`);
+                            if (button) {
+                                button.click();
+                                searchInput.value = '';
+                                searchResults.classList.remove('active');
+                            }
+                        });
+                    }
+                    
+                    searchResults.classList.add('active');
+                    return;
+                }
+                
                 // Эмодзи свободен
                 searchResults.innerHTML = `
                     <div class="search-result-item emoji-result free">
@@ -914,7 +1059,7 @@ function initSearch() {
             }
         }
         
-        // Если не эмодзи, обычный текстовый поиск
+        // Текстовый поиск
         if (query.length < 2) {
             searchResults.classList.remove('active');
             return;
@@ -931,7 +1076,6 @@ function initSearch() {
             return;
         }
         
-        // Отображаем текстовые результаты
         searchResults.innerHTML = matches.map(item => {
             const icon = item.icon || 'images/default.jpg';
             
@@ -961,7 +1105,6 @@ function initSearch() {
         
         searchResults.classList.add('active');
         
-        // Добавляем обработчики на результаты
         document.querySelectorAll('.search-result-item[data-char]').forEach(item => {
             item.addEventListener('click', function() {
                 const charKey = this.getAttribute('data-char');
@@ -975,28 +1118,23 @@ function initSearch() {
         });
     }
     
-    // Удаляем старые обработчики
     const oldHandler = searchInput._searchHandler;
     if (oldHandler) {
         searchInput.removeEventListener('input', oldHandler);
     }
     
-    // Создаем новый обработчик
     searchInput._searchHandler = function(e) {
         performSearch(e.target.value);
     };
     
-    // Добавляем обработчик
     searchInput.addEventListener('input', searchInput._searchHandler);
     
-    // Закрытие по клику вне
     document.addEventListener('click', function(e) {
         if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
             searchResults.classList.remove('active');
         }
     });
     
-    // Поиск по Enter
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             const firstResult = document.querySelector('.search-result-item');
@@ -1008,6 +1146,7 @@ function initSearch() {
     
     console.log('Поиск готов к работе');
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM загружен');
     generateSite();
@@ -1079,3 +1218,42 @@ function showPreview(button) {
     
     previewContainer.classList.add('active');
 }
+
+
+// Функция для открытия случайного сеттинга
+function openRandomSetting() {
+    // Получаем все кнопки сеттингов (не включая саму кнопку "Случайный")
+    const settingButtons = document.querySelectorAll('.character-button');
+    
+    if (settingButtons.length === 0) return;
+    
+    // Выбираем случайную кнопку
+    const randomIndex = Math.floor(Math.random() * settingButtons.length);
+    const randomButton = settingButtons[randomIndex];
+    
+    // Кликаем по ней
+    randomButton.click();
+    
+    // Анимация/подсветка (опционально)
+    randomButton.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+        randomButton.style.transform = '';
+    }, 300);
+}
+
+// Добавляем обработчик после генерации кнопок
+document.addEventListener('DOMContentLoaded', function() {
+    generateSite();
+    setTimeout(() => {
+        initScrollbar();
+        initSearch();
+        
+        // Добавляем обработчик для кнопки случайного сеттинга
+        const randomBtn = document.getElementById('randomButton');
+        if (randomBtn) {
+            randomBtn.addEventListener('click', openRandomSetting);
+        }
+        
+        console.log('Все функции инициализированы');
+    }, 500);
+});
