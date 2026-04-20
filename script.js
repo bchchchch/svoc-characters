@@ -318,7 +318,7 @@ const portraitImages = {
 const sortedCharacters = Object.entries(charactersData).sort((a, b) => {
     const nameA = a[1].buttonName.toLowerCase();
     const nameB = b[1].buttonName.toLowerCase();
-    return nameA.localeCompare(nameB, 'ru'); // Сортировка с учетом русского языка
+    return nameA.localeCompare(nameB, 'ru'); 
 });
 
 
@@ -329,17 +329,17 @@ function generateSite() {
     buttonsContainer.innerHTML = '';
     cardsContainer.innerHTML = '';
     
-    // СОРТИРУЕМ ПЕРСОНАЖЕЙ ПО АЛФАВИТУ
+    
     const sortedCharacters = Object.entries(charactersData).sort((a, b) => {
         const nameA = a[1].buttonName.toLowerCase();
         const nameB = b[1].buttonName.toLowerCase();
         return nameA.localeCompare(nameB, 'ru');
     });
     
-    // Используем sortedCharacters вместо Object.entries
+    
     for (let [charKey, data] of sortedCharacters) {
         
-        // СОЗДАЕМ КНОПКУ
+        
         const button = document.createElement('div');
         button.className = 'character-button';
         button.setAttribute('data-character', charKey);
@@ -357,19 +357,19 @@ function generateSite() {
         
         buttonsContainer.appendChild(button);
         
-        // СОЗДАЕМ КАРТОЧКУ
+        
         const card = document.createElement('div');
         card.className = `character-card ${data.cardStyle || 'style1'}`;
         card.id = `${charKey}-card`;
         
-        // Проверяем, стиль без параллакса
+        
         const isNoPar = data.cardStyle && data.cardStyle.includes('nopar');
         
        if (isNoPar) {
-    // КАРТОЧКА БЕЗ ПАРАЛЛАКСА
+    
     let portraitsHTML = '';
     
-    // Создаем портреты как в превью
+    
     if (data.portraits && data.parallaxNames) {
         for (let i = 0; i < data.portraits.length; i++) {
             const portraitKey = data.portraits[i];
@@ -388,7 +388,7 @@ function generateSite() {
         }
     }
     
-    // Определяем фон карточки в зависимости от стиля
+    
     let cardBg = 'images/card_1_nopar.png';
     let nameBg = 'images/setting_name.png';
     let nameBgClass = '';
@@ -448,7 +448,7 @@ function generateSite() {
     `;
 
         } else {
-            // ОБЫЧНАЯ КАРТОЧКА С ПАРАЛЛАКСОМ
+            
             let tagsHTML = '';
             data.parallaxNames.forEach((name, index) => {
                 const position = data.parallaxPositions[index] || 'center';
@@ -518,7 +518,7 @@ function generateSite() {
     initParallax();
 }
 
-// ===== ОБНОВЛЕНИЕ ССЫЛОК =====
+
 let buttons, cards, overlay, closeButtons, previewContainer, portraitsRow;
 
 function updateElementReferences() {
@@ -532,13 +532,13 @@ function updateElementReferences() {
     attachEventListeners();
 }
 
-// ===== ОБРАБОТЧИКИ =====
+
 let isClosing = false;
 let previewTimer;
 let currentButton = null;
 
 function attachEventListeners() {
-    // Закрытие карточек
+    
     function closeAll() {
         if (isClosing) return;
         
@@ -560,7 +560,7 @@ function attachEventListeners() {
         }, 200);
     }
     
-    // Открытие карточки
+    
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
@@ -587,7 +587,7 @@ function attachEventListeners() {
             hidePreview();
         });
         
-        // Превью при наведении
+        
         button.addEventListener('mouseenter', function() {
             if (previewTimer) clearTimeout(previewTimer);
             currentButton = this;
@@ -603,7 +603,7 @@ function attachEventListeners() {
         });
     });
     
-    // Кнопки закрытия
+    
     closeButtons.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -611,17 +611,17 @@ function attachEventListeners() {
         });
     });
     
-    // Затемнение
+    
     overlay.addEventListener('click', closeAll);
     
-    // Предотвращение закрытия при клике на карточку
+    
     cards.forEach(card => {
         card.addEventListener('click', function(e) {
             e.stopPropagation();
         });
     });
     
-    // Превью
+    
     previewContainer.addEventListener('mouseenter', function() {
         if (previewTimer) clearTimeout(previewTimer);
     });
@@ -646,7 +646,7 @@ function attachEventListeners() {
     });
 }
 
-// ===== ПРЕВЬЮ =====
+
 function showPreview(button) {
     const portraitsAttr = button.getAttribute('data-portraits');
     const namesAttr = button.getAttribute('data-names');
@@ -659,7 +659,7 @@ function showPreview(button) {
     portraitsRow.innerHTML = '';
     portraitsRow.className = 'portraits-row';
     
-    // Добавляем класс в зависимости от количества портретов
+    
     if (portraitKeys.length === 2) {
         portraitsRow.classList.add('two-portraits');
     } else if (portraitKeys.length === 3) {
@@ -705,7 +705,7 @@ function hidePreview() {
     previewContainer.classList.remove('active');
 }
 
-// ===== ПАРАЛЛАКС =====
+
 function initParallax() {
     cards.forEach(card => {
         const parallaxImage = card.querySelector('.parallax-image');
@@ -734,7 +734,7 @@ function initParallax() {
     });
 }
 
-// ===== КАСТОМНЫЙ ПОЛЗУНОК =====
+
 function initScrollbar() {
     const scrollTrack = document.getElementById('scrollTrack');
     const scrollThumb = document.getElementById('scrollThumb');
@@ -743,7 +743,7 @@ function initScrollbar() {
     if (!scrollTrack || !scrollThumb || !content) return;
     
     let isDragging = false;
-    const thumbHeight = 72; // высота slider_2.png
+    const thumbHeight = 72; 
     
     function updateThumbPosition() {
         const scrollPercent = content.scrollTop / (content.scrollHeight - content.clientHeight);
@@ -794,18 +794,18 @@ function initScrollbar() {
         content.scrollTop = scrollPercent * maxScroll;
     });
     
-    // Начальная позиция
+    
     setTimeout(updateThumbPosition, 100);
 }
 
-// ===== ЗАПУСК =====
+
 document.addEventListener('DOMContentLoaded', function() {
     generateSite();
     setTimeout(initScrollbar, 500);
 });
 
 
-// ===== ПОИСК ПО ЭМОДЗИ И ТЕКСТУ =====
+
 function initSearch() {
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
@@ -817,16 +817,16 @@ function initSearch() {
     
     console.log('Поиск инициализирован');
     
-    // Функция нормализации эмодзи (убирает вариативные селекторы)
+    
     function normalizeEmoji(emoji) {
         if (!emoji) return '';
-        // Убираем символ вариации (U+FE0F)
+        
         return emoji.replace(/\uFE0F/g, '');
     }
     
-    // Функция проверки, являются ли эмодзи похожими
+    
 function isSimilarEmoji(emoji1, emoji2) {
-    // Нормализуем оба эмодзи
+    
     const norm1 = normalizeEmoji(emoji1);
     const norm2 = normalizeEmoji(emoji2);
     
@@ -867,12 +867,12 @@ function isSimilarEmoji(emoji1, emoji2) {
     return false;
 }
     
-    // Собираем все данные для поиска
+    
     const searchData = [];
     const emojiMap = new Map();
     
     for (let [charKey, data] of Object.entries(charactersData)) {
-        // Добавляем локацию
+        
         searchData.push({
             type: 'location',
             name: data.locationName,
@@ -881,7 +881,7 @@ function isSimilarEmoji(emoji1, emoji2) {
             emoji: data.emoji || ''
         });
         
-        // Сохраняем эмодзи в карту
+        
         if (data.emoji) {
             const normalizedEmoji = normalizeEmoji(data.emoji);
             emojiMap.set(normalizedEmoji, {
@@ -896,7 +896,7 @@ function isSimilarEmoji(emoji1, emoji2) {
             });
         }
         
-        // Добавляем каждого персонажа
+        
         if (data.parallaxNames && data.portraits) {
             data.parallaxNames.forEach((name, index) => {
                 const portraitKey = data.portraits[index];
@@ -915,7 +915,7 @@ function isSimilarEmoji(emoji1, emoji2) {
     console.log('Данные для поиска загружены');
     console.log('Доступные эмодзи:', Array.from(emojiMap.keys()));
     
-    // Функция проверки эмодзи
+    
     function isEmoji(char) {
         if (!char) return false;
         
@@ -947,7 +947,7 @@ function isSimilarEmoji(emoji1, emoji2) {
         return yourEmojis.includes(normalized) || yourEmojis.includes(char);
     }
     
-    // Функция поиска
+    
     function performSearch(query) {
         if (!query || query.length < 1) {
             searchResults.classList.remove('active');
@@ -976,7 +976,7 @@ function isSimilarEmoji(emoji1, emoji2) {
             }
             
             if (emojiData) {
-                // Точное совпадение
+                
                 const data = emojiData;
                 searchResults.innerHTML = `
                     <div class="search-result-item emoji-result occupied" data-char="${data.charKey}">
@@ -1004,7 +1004,7 @@ function isSimilarEmoji(emoji1, emoji2) {
                 searchResults.classList.add('active');
                 return;
             } else {
-                // Проверяем на похожие эмодзи
+                
                 let similarData = null;
                 let similarEmoji = null;
                 for (let [key, value] of emojiMap) {
@@ -1043,7 +1043,7 @@ function isSimilarEmoji(emoji1, emoji2) {
                     return;
                 }
                 
-                // Эмодзи свободен
+                
                 searchResults.innerHTML = `
                     <div class="search-result-item emoji-result free">
                         <div class="emoji-large">${foundEmoji}</div>
@@ -1059,7 +1059,7 @@ function isSimilarEmoji(emoji1, emoji2) {
             }
         }
         
-        // Текстовый поиск
+        
         if (query.length < 2) {
             searchResults.classList.remove('active');
             return;
@@ -1158,7 +1158,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// ===== ПРЕВЬЮ =====
+
 function showPreview(button) {
     const portraitsAttr = button.getAttribute('data-portraits');
     const namesAttr = button.getAttribute('data-names');
@@ -1171,7 +1171,7 @@ function showPreview(button) {
     portraitsRow.innerHTML = '';
     portraitsRow.className = 'portraits-row';
     
-    // Добавляем класс в зависимости от количества
+    
     if (portraitKeys.length === 1) {
         portraitsRow.classList.add('one-portrait');
     } else if (portraitKeys.length === 2) {
@@ -1220,35 +1220,35 @@ function showPreview(button) {
 }
 
 
-// Функция для открытия случайного сеттинга
+
 function openRandomSetting() {
-    // Получаем все кнопки сеттингов (не включая саму кнопку "Случайный")
+    
     const settingButtons = document.querySelectorAll('.character-button');
     
     if (settingButtons.length === 0) return;
     
-    // Выбираем случайную кнопку
+    
     const randomIndex = Math.floor(Math.random() * settingButtons.length);
     const randomButton = settingButtons[randomIndex];
     
-    // Кликаем по ней
+    
     randomButton.click();
     
-    // Анимация/подсветка (опционально)
+    
     randomButton.style.transform = 'scale(1.05)';
     setTimeout(() => {
         randomButton.style.transform = '';
     }, 300);
 }
 
-// Добавляем обработчик после генерации кнопок
+
 document.addEventListener('DOMContentLoaded', function() {
     generateSite();
     setTimeout(() => {
         initScrollbar();
         initSearch();
         
-        // Добавляем обработчик для кнопки случайного сеттинга
+        
         const randomBtn = document.getElementById('randomButton');
         if (randomBtn) {
             randomBtn.addEventListener('click', openRandomSetting);

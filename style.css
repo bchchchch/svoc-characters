@@ -1,17 +1,17 @@
-/* ===== МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ ВЕРСИЯ ===== */
+
 @media (max-width: 1024px) and (orientation: landscape) {
-    /* Просто показываем ПК версию без изменений */
+    
     body {
         overflow: hidden;
     }
     
-    /* Убираем скроллы */
+    
     .frame-content {
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
     
-    /* Немного увеличиваем кликабельные элементы */
+    
     .character-button {
         min-height: 44px;
     }
@@ -22,7 +22,7 @@
     }
 }
 
-/* Вертикальная ориентация - показываем сообщение */
+
 @media (orientation: portrait) {
     .orientation-message {
         display: flex !important;
@@ -52,24 +52,24 @@
 
 
 
-/* Кастомный курсор для всего сайта */
+
 * {
     cursor: url('images/gui/cursor.png') 1 1, auto !important;
 }
 
-/* Для всех кликабельных элементов - тот же курсор */
+
 a, button, .character-button, .card-link-button, 
 .close-button, .rail-thumb, .name-tag, .portrait-item,
 .name-plate, input, select, textarea, [role="button"] {
     cursor: url('images/gui/cursor.png') 1 1, pointer !important;
 }
 
-/* Для активного перетаскивания */
+
 .rail-thumb:active, .dragging, :active {
     cursor: url('images/gui/cursor.png') 1 1, grabbing !important;
 }
 
-/* Для текстовых полей - можно оставить стандартный или тоже кастомный */
+
 input, textarea {
     cursor: url('images/gui/cursor.png') 1 1, text !important;
 }
@@ -95,7 +95,7 @@ body {
 }
 
 
-/* Подключение шрифта для описаний */
+
 @font-face {
     font-family: 'SevenExEightPixel';
     src: url('images/SevenExEightPixel-Regular.otf') format('opentype');
@@ -103,16 +103,16 @@ body {
     font-style: normal;
 }
 
-/* Применяем шрифт только к описаниям */
+
 .character-description,
 .character-description p {
     font-family: 'SevenExEightPixel', monospace !important;
-    /* Можно также настроить размер, если нужно */
+    
     font-size: 12px;
     line-height: 1.6;
 }
 
-/* Фон сайта */
+
 .background {
     position: fixed;
     top: 0;
@@ -126,7 +126,7 @@ body {
 }
 
 .overlay {
-    position: absolute;  /* было fixed, стало absolute */
+    position: absolute;  
     top: 0;
     left: 0;
     width: 100%;
@@ -135,8 +135,8 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease, visibility 0.25s ease;
-    z-index: 50; /* выше контента, но ниже карточек */
-    pointer-events: none; /* НЕ БЛОКИРУЕТ КЛИКИ */
+    z-index: 50; 
+    pointer-events: none; 
 }
 
 .overlay.active {
@@ -144,7 +144,7 @@ body {
     visibility: visible;
 }
 
-/* ===== РАМКА ИНТЕРФЕЙСА ===== */
+
 .frame-content {
     position: absolute;
     top: 120px;
@@ -159,7 +159,7 @@ body {
     scrollbar-width: none;
 }
 
-/* ===== НОВАЯ ШАПКА С УГОЛКАМИ ===== */
+
 .frame-header {
     position: absolute;
     top: 0;
@@ -174,7 +174,7 @@ body {
     background-position: center top;
 }
 
-/* Левый уголок поверх шапки */
+
 .frame-header::before {
     content: "";
     position: absolute;
@@ -190,7 +190,7 @@ body {
     pointer-events: none;
 }
 
-/* Правый уголок поверх шапки */
+
 .frame-header::after {
     content: "";
     position: absolute;
@@ -206,7 +206,7 @@ body {
     pointer-events: none;
 }
 
-/* Контент шапки */
+
 .frame-header .header-content {
     position: relative;
     z-index: 32;
@@ -220,20 +220,20 @@ body {
     gap: 30px;
 }
 
-/* Логотип */
+
 .logo {
     flex-shrink: 0;
-    margin-left: -20px;  /* Сдвиг влево */
+    margin-left: -20px;  
 }
 
 .logo img {
-    height: 60px;  /* Уменьшенный логотип */
+    height: 60px;  
     width: auto;
     transition: transform 0.2s ease;
 }
 
 
-/* Заголовок */
+
 .frame-header h1 {
     font-family: 'MyCustomFont', Arial, sans-serif;
     font-size: 30px;
@@ -243,7 +243,7 @@ body {
     white-space: nowrap;
 }
 
-/* Навигация справа */
+
 .header-nav {
     display: flex;
     gap: 15px;
@@ -252,7 +252,7 @@ body {
     margin-left: auto;
 }
 
-/* Левая боковая рамка */
+
 .frame-left {
     position: absolute;
     left: 0;
@@ -266,7 +266,7 @@ body {
     pointer-events: none;
 }
 
-/* Правая боковая рамка */
+
 .frame-right {
     position: absolute;
     right: 0;
@@ -280,7 +280,7 @@ body {
     pointer-events: none;
 }
 
-/* Нижняя рамка (подвал) */
+
 .frame-bottom {
     position: absolute;
     bottom: 0;
@@ -294,7 +294,7 @@ body {
     pointer-events: none;
 }
 
-/* Левый нижний уголок */
+
 .corner-left {
     position: absolute;
     bottom: 0;
@@ -309,7 +309,7 @@ body {
     pointer-events: none;
 }
 
-/* Правый нижний уголок */
+
 .corner-right {
     position: absolute;
     bottom: 0;
@@ -324,14 +324,14 @@ body {
     pointer-events: none;
 }
 
-/* ===== РЕЛЬСА И ПОЛЗУНОК ===== */
+
 .rail-container {
     position: absolute;
-    left: 27px; /* плотно к левой рамке */
-    top: 120px; /* сразу под шапкой */
-    bottom: 27px; /* до подвала */
+    left: 27px; 
+    top: 120px; 
+    bottom: 27px; 
     width: 36px;
-    z-index: 20; /* выше рамки */
+    z-index: 20; 
     pointer-events: none;
 }
 
@@ -347,13 +347,13 @@ body {
 
 .rail-thumb {
     position: absolute;
-    left: -8px; /* центрирование с учетом ширины */
+    left: -8px; 
     width: 52px;
     height: 72px;
     cursor: url('images/gui/cursor.png') 1 1, grab;
     pointer-events: auto;
     transition: top 0.02s ease;
-    z-index: 21; /* выше всего */
+    z-index: 21; 
 }
 
 .rail-thumb:active {
@@ -367,7 +367,7 @@ body {
     pointer-events: none;
 }
 
-/* ===== КОНТЕНТ ВНУТРИ РАМКИ ===== */
+
 .frame-content {
     position: absolute;
     top: 120px;
@@ -377,8 +377,8 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 20px;
-    pointer-events: auto; /* Контент кликабелен */
-    z-index: 15; /* Выше рамки, но ниже ползунка */
+    pointer-events: auto; 
+    z-index: 15; 
     scrollbar-width: none;
 }
 
@@ -386,7 +386,7 @@ body {
     display: none;
 }
 
-/* Левая колонка */
+
 .left-column {
     position: relative;
     width: 33.333%;
@@ -394,7 +394,7 @@ body {
     float: left;
     padding: 30px 30px 30px 50px;
     
-    /* Кастомный скроллбар */
+    
     scrollbar-width: thin;
     scrollbar-color: #888 #333;
 }
@@ -418,7 +418,7 @@ body {
     gap: 15px;
 }
 
-/* Кнопка */
+
 .character-button {
     margin: 0 0 0 20px;
     position: relative;
@@ -480,12 +480,12 @@ body {
     pointer-events: none;
 }
 
-/* ===== ПРЕВЬЮ ПРИ НАВЕДЕНИИ ===== */
-/* ===== ПРЕВЬЮ ПРИ НАВЕДЕНИИ ===== */
+
+
 .preview-container {
     position: fixed;
     top: 50%;
-    left: 600px;  /* Прижимаем к левому краю рамки */
+    left: 600px;  
     transform: translateY(-50%);
     width: auto;
     min-width: 400px;
@@ -502,18 +502,18 @@ body {
     visibility: visible;
 }
 
-/* Контейнер портретов */
+
 .portraits-row {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    gap: 140px;  /* Расстояние между портретами */
+    gap: 140px;  
     margin-bottom: 20px;
     flex-wrap: wrap;
     padding-left: 20px;
 }
 
-/* ВСЕ ПОРТРЕТЫ ОДИНАКОВОГО РАЗМЕРА */
+
 .portrait-item {
     display: flex;
     flex-direction: column;
@@ -522,21 +522,21 @@ body {
     opacity: 0;
     transform: translateY(15px);
     transition: all 0.3s ease;
-    width: 200px;  /* Фиксированная ширина для всех */
+    width: 200px;  
 }
 
-/* Портрет */
+
 .preview-portrait {
-    width: 300px;  /* Фиксированная ширина */
-    height: 300px;  /* Фиксированная высота */
+    width: 300px;  
+    height: 300px;  
     border-radius: 10px;
     border: 3px solid #330000;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s ease, border-color 0.2s ease;
-    object-fit: cover;  /* Чтобы картинка не искажалась */
+    object-fit: cover;  
 }
 
-/* Табличка с именем */
+
 .name-plate {
     margin-top: 8px;
     position: relative;
@@ -549,7 +549,7 @@ body {
 }
 
 .name-plate img {
-    width: 180px;  /* Чуть меньше портрета */
+    width: 180px;  
     height: auto;
     display: block;
 }
@@ -568,7 +568,7 @@ body {
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
-/* Анимация появления */
+
 @keyframes portraitAppear {
     to {
         opacity: 1;
@@ -576,20 +576,20 @@ body {
     }
 }
 
-/* Индивидуальные задержки */
+
 .portrait-item:nth-child(1) { animation-delay: 0.05s; }
 .portrait-item:nth-child(2) { animation-delay: 0.1s; }
 .portrait-item:nth-child(3) { animation-delay: 0.15s; }
 .portrait-item:nth-child(4) { animation-delay: 0.2s; }
 .portrait-item:nth-child(5) { animation-delay: 0.25s; }
 
-/* При наведении */
+
 .portrait-item:hover .preview-portrait {
     transform: scale(1.05);
     border-color: #ffd700;
 }
 
-/* Стили портрета */
+
 .preview-portrait {
     border-radius: 10px;
     border: 3px solid #330000;
@@ -603,7 +603,7 @@ body {
     border-color: #ffd700;
 }
 
-/* Табличка с именем */
+
 .name-plate {
     margin-top: 8px;
     position: relative;
@@ -633,7 +633,7 @@ body {
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
-/* Карточки */
+
 .cards-container {
     position: fixed;
     top: 0;
@@ -698,7 +698,7 @@ body {
     z-index: 202;
 }
 
-/* Параллакс */
+
 .parallax-container {
     position: absolute;
     top: 0;
@@ -723,7 +723,7 @@ body {
     transform: scale(1.1) translate(5px, 5px);
 }
 
-/* Таблички с именами */
+
 .name-tags {
     position: absolute;
     top: 0;
@@ -791,7 +791,7 @@ body {
     }
 }
 
-/* Текст справа */
+
 .card-text-content {
     position: absolute;
     top: 0;
@@ -860,7 +860,7 @@ body {
     border-radius: 10px;
 }
 
-/* Кнопки */
+
 .links-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -950,7 +950,7 @@ body {
     }
 }
 
-/* Кнопка закрытия */
+
 .close-button {
     position: absolute;
     bottom: -20px;
@@ -973,9 +973,9 @@ body {
     to { opacity: 1; }
 }
 
-/* ===== ИСПРАВЛЕНИЕ ОБЫЧНЫХ СТИЛЕЙ ===== */
 
-/* СТИЛЬ 1 - обычный */
+
+
 .character-card.style1 .card-background {
     content: url('images/card_1.png') !important;
 }
@@ -1018,7 +1018,7 @@ body {
     width: 170px;
 }
 
-/* СТИЛЬ 2 - обычный */
+
 .character-card.style2 .card-background {
     content: url('images/card_2.png') !important;
 }
@@ -1060,7 +1060,7 @@ body {
     content: url('images/char_name.png');
     width: 170px;
 }
-/* СТИЛЬ 3 - обычный */
+
 .character-card.style3 .card-background {
     content: url('images/card_3.png') !important;
 }
@@ -1103,7 +1103,7 @@ body {
     content: url('images/button_hover_2.png');
 }
 
-/* Таблички с именами для style3 */
+
 .character-card.style3 .name-tag .tag-bg {
     content: url('images/char_name_2.png');
     width: 170px;
@@ -1131,15 +1131,15 @@ body {
 }
 
 
-/* Контейнер поиска */
+
 .search-container {
     position: relative;
     width: 500px;
-    margin-left: auto;  /* Прижимаем к навигации */
+    margin-left: auto;  
     margin-right: 20px;
 }
 
-/* Поле ввода */
+
 .search-input {
     width: 450%;
     height: 40px;
@@ -1166,7 +1166,7 @@ body {
     font-size: 14px;
 }
 
-/* Выпадающий список результатов */
+
 .search-results {
     position: absolute;
     width: 450%;
@@ -1185,7 +1185,7 @@ body {
     display: block;
 }
 
-/* Элемент результата */
+
 .search-result-item {
     padding: 12px 15px;
     border-bottom: 1px solid rgba(255, 215, 0, 0.3);
@@ -1204,7 +1204,7 @@ body {
     background: rgba(255, 215, 0, 0.2);
 }
 
-/* Иконка результата */
+
 .search-result-icon {
     width: 50px;
     height: 50px;
@@ -1213,7 +1213,7 @@ body {
     border: 2px solid #ffd700;
 }
 
-/* Текст результата */
+
 .search-result-text {
     flex: 1;
 }
@@ -1236,7 +1236,7 @@ body {
     font-style: italic;
 }
 
-/* Адаптация */
+
 @media (max-width: 1200px) {
     .search-container {
         width: 250px;
@@ -1256,7 +1256,7 @@ body {
     }
 }
 
-/* Стили для кнопки с эмодзи */
+
 .button-text {
     position: absolute;
     top: 50%;
@@ -1273,7 +1273,7 @@ body {
 }
 
 .button-emoji {
-    font-size: 24px;  /* Эмодзи крупнее */
+    font-size: 24px;  
     line-height: 1;
 }
 
@@ -1281,7 +1281,7 @@ body {
     font-size: 18px;
 }
 
-/* Эмодзи в кнопке */
+
 .button-emoji {
     font-size: 24px;
     margin-right: 8px;
@@ -1294,7 +1294,7 @@ body {
     vertical-align: middle;
 }
 
-/* Для мобильных */
+
 @media (max-width: 768px) {
     .button-emoji {
         font-size: 20px;
@@ -1303,16 +1303,16 @@ body {
 }
 
 
-/* Эмодзи в названии карточки - УМЕНЬШАЕМ И ЦЕНТРИРУЕМ */
+
 .name-emoji {
-    font-size: 28px;  /* Было 36px, уменьшили */
+    font-size: 28px;  
     margin-right: 8px;
     display: inline-flex;
-    align-items: center;  /* Центрирование по вертикали */
+    align-items: center;  
     justify-content: center;
     vertical-align: middle;
-    line-height: 1;  /* Убираем лишние отступы */
-    transform: translateY(-2px);  /* Небольшая корректировка по вертикали */
+    line-height: 1;  
+    transform: translateY(-2px);  
 }
 
 .name-location {
@@ -1322,18 +1322,18 @@ body {
     line-height: 1.2;
 }
 
-/* Для style3 (без таблички) */
+
 .character-card.style3 .name-emoji {
-    font-size: 32px;  /* Было 42px, уменьшили */
+    font-size: 32px;  
     margin-right: 10px;
     transform: translateY(-2px);
 }
 
 .character-card.style3 .name-location {
-    font-size: 28px;  /* Подгоняем под размер эмодзи */
+    font-size: 28px;  
 }
 
-/* Если эмодзи все еще не центрируется */
+
 .name-bg-text {
     display: flex;
     align-items: center;
@@ -1341,7 +1341,7 @@ body {
     gap: 5px;
 }
 
-/* Для мобильных */
+
 @media (max-width: 768px) {
     .name-emoji {
         font-size: 22px;
@@ -1354,7 +1354,7 @@ body {
 }
 
 
-/* Результаты поиска эмодзи */
+
 .emoji-result {
     padding: 20px;
     text-align: center;
@@ -1381,7 +1381,7 @@ body {
     }
 }
 
-/* Занятый эмодзи */
+
 .emoji-result.occupied {
     border-left: 4px solid #ff6b6b;
     background: rgba(255, 107, 107, 0.1);
@@ -1391,7 +1391,7 @@ body {
     filter: drop-shadow(0 0 10px #ff6b6b);
 }
 
-/* Свободный эмодзи */
+
 .emoji-result.free {
     border-left: 4px solid #6bff6b;
     background: rgba(107, 255, 107, 0.1);
@@ -1407,12 +1407,12 @@ body {
     font-weight: bold;
 }
 
-/* ===== АДАПТАЦИЯ ШАПКИ, ПОИСКА И ССЫЛОК ===== */
+
 :root {
     --scale-factor: 1;
 }
 
-/* Базовые адаптивные размеры */
+
 .header-content {
     display: flex;
     align-items: center;
@@ -1422,7 +1422,7 @@ body {
     height: 100%;
 }
 
-/* Логотип */
+
 .logo {
     flex-shrink: 0;
 }
@@ -1433,7 +1433,7 @@ body {
     transition: transform 0.2s;
 }
 
-/* Название */
+
 .frame-header h1 {
     font-size: clamp(16px, min(3vw, 3vh), 42px);
     white-space: nowrap;
@@ -1442,7 +1442,7 @@ body {
     text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
 }
 
-/* Поиск - 45% ширины */
+
 .search-container {
     position: relative;
     width: min(45vw, 800px);
@@ -1472,13 +1472,13 @@ body {
     color: #666;
 }
 
-/* ===== ИСПРАВЛЕННЫЙ ПОИСК ===== */
+
 .search-results {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    min-width: 250px;  /* Минимальная ширина */
+    min-width: 250px;  
     max-height: 400px;
     overflow-y: auto;
     background: rgba(40, 20, 10, 0.98);
@@ -1503,7 +1503,7 @@ body {
     border-bottom: 1px solid rgba(255,215,0,0.2);
     cursor: pointer;
     transition: background 0.2s;
-    min-height: 60px;  /* Минимальная высота */
+    min-height: 60px;  
 }
 
 .search-result-item:hover {
@@ -1513,7 +1513,7 @@ body {
 .search-result-icon {
     width: 45px;
     height: 45px;
-    min-width: 45px;  /* Фиксированная минимальная ширина */
+    min-width: 45px;  
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ffd700;
@@ -1521,7 +1521,7 @@ body {
 
 .search-result-text {
     flex: 1;
-    min-width: 0;  /* Позволяет тексту переноситься */
+    min-width: 0;  
 }
 
 .search-result-name {
@@ -1529,8 +1529,8 @@ body {
     font-weight: bold;
     color: #ffd700;
     margin-bottom: 2px;
-    white-space: normal;  /* Разрешаем перенос */
-    word-break: break-word;  /* Переносим длинные слова */
+    white-space: normal;  
+    word-break: break-word;  
 }
 
 .search-result-location {
@@ -1546,7 +1546,7 @@ body {
     font-style: italic;
 }
 
-/* Эмодзи результаты */
+
 .emoji-result {
     padding: 20px;
     text-align: center;
@@ -1557,14 +1557,14 @@ body {
     margin-bottom: 10px;
 }
 
-/* Для длинных названий */
+
 .search-result-name span,
 .search-result-location span {
     display: inline-block;
     max-width: 100%;
 }
 
-/* Кнопки в шапке */
+
 .header-nav {
     display: flex;
     gap: clamp(5px, 1vw, 15px);
@@ -1616,7 +1616,7 @@ body {
     pointer-events: none;
 }
 
-/* Адаптация для разных экранов */
+
 @media (min-width: 2560px) {
     .search-container {
         width: 45vw;
@@ -1680,7 +1680,7 @@ body {
     }
 }
 
-/* ===== АДАПТИВНЫЕ ПОРТРЕТЫ ===== */
+
 .preview-container {
     position: fixed;
     top: 50%;
@@ -1733,10 +1733,10 @@ body {
 }
 
 
-/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+
 @media (max-width: 1024px) and (orientation: landscape) {
     
-    /* Масштабирование */
+    
     body {
         zoom: 0.65;
         -moz-transform: scale(0.65);
@@ -1766,12 +1766,12 @@ body {
         -webkit-overflow-scrolling: touch;
     }
     
-    /* МОБИЛЬНАЯ ШАПКА - скрываем кнопки */
+    
     .header-nav {
         display: none !important;
     }
     
-    /* Увеличиваем поиск */
+    
     .search-container {
         width: 350px !important;
         margin-left: auto !important;
@@ -1783,7 +1783,7 @@ body {
         font-size: 18px !important;
     }
     
-    /* Результаты поиска больше */
+    
     .search-results {
         max-height: 500px !important;
         min-width: 350px !important;
@@ -1807,7 +1807,7 @@ body {
         font-size: 14px !important;
     }
     
-    /* Эмодзи результаты */
+    
     .emoji-large {
         font-size: 80px !important;
     }
@@ -1820,7 +1820,7 @@ body {
         font-size: 28px !important;
     }
     
-    /* Увеличиваем кликабельные элементы */
+    
     .character-button, .header-link, .card-link-button, .close-button {
         min-height: 44px;
         min-width: 44px;
@@ -1828,7 +1828,7 @@ body {
     }
 }
 
-/* Вертикальная ориентация */
+
 @media (orientation: portrait) and (max-width: 1024px) {
     .orientation-message {
         display: flex !important;
@@ -1860,7 +1860,7 @@ body {
 }
 
 
-/* ===== УВЕЛИЧЕННЫЙ ПОИСК ===== */
+
 .search-container {
     position: relative;
     width: 450px;
@@ -1903,7 +1903,7 @@ body {
     font-size: 13px;
 }
 
-/* Эмодзи результаты увеличены */
+
 .emoji-large {
     font-size: 80px;
     margin-bottom: 15px;
@@ -1919,7 +1919,7 @@ body {
 
 
 
-/* ===== ОБЩИЕ СТИЛИ ДЛЯ КАРТОЧЕК БЕЗ ПАРАЛЛАКСА ===== */
+
 .character-card.style1-nopar,
 .character-card.style2-nopar,
 .character-card.style3-nopar {
@@ -1935,7 +1935,7 @@ body {
     display: none !important;
 }
 
-/* Левая колонка с портретами - увеличен отступ слева */
+
 .character-card.style1-nopar .portraits-sidebar,
 .character-card.style2-nopar .portraits-sidebar,
 .character-card.style3-nopar .portraits-sidebar {
@@ -1944,62 +1944,62 @@ body {
     left: 0;
     width: 50%;
     height: 100%;
-    padding: 60px 60px 60px 80px;  /* Увеличен отступ слева (последнее число) */
+    padding: 60px 60px 60px 80px;  
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 40px;  /* Расстояние между портретами */
+    gap: 40px;  
     z-index: 203;
 }
 
-/* Элемент портрета - убрана обводка и анимация */
+
 .character-card.style1-nopar .portrait-side-item,
 .character-card.style2-nopar .portrait-side-item,
 .character-card.style3-nopar .portrait-side-item {
     display: flex;
     align-items: center;
-    gap: 30px;  /* Расстояние между портретом и табличкой */
-    /* Убрана анимация */
+    gap: 30px;  
+    
 }
 
-/* Убрана анимация при наведении */
+
 .character-card.style1-nopar .portrait-side-item:hover,
 .character-card.style2-nopar .portrait-side-item:hover,
 .character-card.style3-nopar .portrait-side-item:hover {
     transform: none;
 }
 
-/* Портрет - увеличен размер, убрана обводка */
+
 .character-card.style1-nopar .portrait-side-img,
 .character-card.style2-nopar .portrait-side-img,
 .character-card.style3-nopar .portrait-side-img {
-    width: 168px;   /* 140px + 20% = 168px */
-    height: 168px;  /* 140px + 20% = 168px */
+    width: 168px;   
+    height: 168px;  
     border-radius: 15px;
     object-fit: cover;
-    border: none;  /* Убрана обводка */
-    box-shadow: none;  /* Убрана тень */
+    border: none;  
+    box-shadow: none;  
 }
 
-/* Табличка с именем - увеличен размер */
+
 .character-card.style1-nopar .name-plate-card,
 .character-card.style2-nopar .name-plate-card,
 .character-card.style3-nopar .name-plate-card {
     position: relative;
     cursor: pointer;
-    transition: none;  /* Убрана анимация */
+    transition: none;  
 }
 
 .character-card.style1-nopar .name-plate-card:hover,
 .character-card.style2-nopar .name-plate-card:hover,
 .character-card.style3-nopar .name-plate-card:hover {
-    transform: none;  /* Убрана анимация */
+    transform: none;  
 }
 
 .character-card.style1-nopar .name-plate-card img,
 .character-card.style2-nopar .name-plate-card img,
 .character-card.style3-nopar .name-plate-card img {
-    width: 192px;   /* 160px + 20% = 192px */
+    width: 192px;   
     height: auto;
     display: block;
 }
@@ -2011,7 +2011,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 22px;  /* 20px + 10% */
+    font-size: 22px;  
     font-weight: bold;
     white-space: nowrap;
     letter-spacing: 1px;
@@ -2032,9 +2032,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===== ПРИНУДИТЕЛЬНОЕ УМЕНЬШЕНИЕ РАССТОЯНИЯ МЕЖДУ КНОПКАМИ ===== */
 
-/* Убираем прижимание к правому краю */
+
+
 .character-card.style1-nopar .links-right,
 .character-card.style2-nopar .links-right,
 .character-card.style3-nopar .links-right,
@@ -2044,10 +2044,10 @@ body {
     display: flex !important;
     flex-direction: column !important;
     gap: 12px !important;
-    align-items: flex-start !important;  /* было flex-end, меняем на flex-start */
+    align-items: flex-start !important;  
 }
 
-/* Убираем margin-left: auto у кнопок */
+
 .character-card.style1-nopar .links-right .card-link-button,
 .character-card.style2-nopar .links-right .card-link-button,
 .character-card.style3-nopar .links-right .card-link-button,
@@ -2057,7 +2057,7 @@ body {
     margin-left: 0 !important;
 }
 
-/* Теперь column-gap будет работать */
+
 .character-card.style1-nopar .links-container,
 .character-card.style2-nopar .links-container,
 .character-card.style3-nopar .links-container,
@@ -2066,14 +2066,14 @@ body {
 .character-card.style3 .links-container {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 5px !important;        /* вертикальное расстояние */
-    column-gap: 10px !important; /* горизонтальное расстояние МЕЖДУ колонками */
+    gap: 5px !important;        
+    column-gap: 10px !important; 
     margin-top: 20px !important;
 }
 
-/* ===== КНОПКИ ДЛЯ СТИЛЕЙ БЕЗ ПАРАЛЛАКСА ===== */
 
-/* Стиль 1 без параллакса - обычные кнопки */
+
+
 .character-card.style1-nopar .card-link-button .button-default {
     content: url('images/button_normal.png') !important;
 }
@@ -2088,7 +2088,7 @@ body {
     font-weight: normal !important;
 }
 
-/* Стиль 2 без параллакса - обычные кнопки */
+
 .character-card.style2-nopar .card-link-button .button-default {
     content: url('images/button_normal.png') !important;
 }
@@ -2103,7 +2103,7 @@ body {
     font-weight: normal !important;
 }
 
-/* Стиль 3 без параллакса - кнопки с белым текстом (как в style3) */
+
 .character-card.style3-nopar .card-link-button .button-default {
     content: url('images/button_normal_2.png') !important;
 }
@@ -2124,13 +2124,13 @@ body {
     font-size: 20px; 
     }
 
-    /* Отдельный контейнер для случайной кнопки */
+    
 .random-button-container {
-    margin-bottom: 50px;  /* Вертикальный зазор */
+    margin-bottom: 50px;  
     padding-bottom: 15px;
 }
 
-/* Стиль кнопки случайного сеттинга (как у обычных) */
+
 .random-button {
     position: relative;
     width: 100%;
