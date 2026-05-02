@@ -197,7 +197,7 @@ const charactersData = {
         discussion: "https://vk.com/topic-236063317_57349757",
         lore: "https://vk.com/@stardewoc-valdhav-morten-eiravel"
     },
-    cardStyle: "style1-nopar",
+    cardStyle: "style1",
     parallaxImg: "images/parallax/waldhav.jpg"
 },
 "char13": {
