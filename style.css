@@ -2184,3 +2184,7 @@ body {
 .random-button .button-emoji {
     font-size: 24px;
 }
+
+#char18-card .links-right {
+    display: none !important;
+}
