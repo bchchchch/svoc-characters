@@ -307,7 +307,7 @@ const charactersData = {
     links: {
         album: "https://vk.com/album-236063317_310294529",
         discussion: "https://vk.ru/topic-236063317_68638118",
-        //lore: "https://vk.com/@stardewoc-zvezdnoe-serebro-tael-faerin"
+        lore: "https://vk.ru/@stardewoc-polnolunie-sharlotta"
     },
     cardStyle: "style1",
     parallaxImg: "images/parallax/fullmoon.jpg"
