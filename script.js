@@ -200,22 +200,22 @@ const charactersData = {
     cardStyle: "style1",
     parallaxImg: "images/parallax/waldhav.jpg"
 },
-"char13": {
-    buttonName: "Штиль",
-    locationName: "Штиль",
-    emoji: "🪸",
-    description: "Чужие стремления и победы никогда не доставляют той же радости, что и свои собственные. А когда ты не можешь спокойно жить и развиваться в своем родном городе, зная, что за каждым поворотом можно встретить горькое напоминание о прошлом, хочется убежать как можно дальше. Особенно когда это самое прошлое так и норовит найти тебя.\n\nС подачки единственного близкого друга, Аркадия сбежала от городской суеты в тихую долину, чтобы найти душевный покой и попытаться построить свою жизнь заново. Получится ли у нее, или старые тревоги окажутся сильнее, покажет только время.",
-    portraits: ["arkadia"],
-    parallaxNames: ["Аркадия"],
-    parallaxPositions: ["center"],
-    links: {
-        album: "https://vk.com/album-236063317_309021269",
-        discussion: "https://vk.com/topic-236063317_57330980",
-        lore: "https://vk.com/@stardewoc-shtil-arkadiya"
-    },
-    cardStyle: "style1-nopar",
-    parallaxImg: "images/parallax/calm.jpg"
-},
+//"char13": {
+    //buttonName: "Штиль",
+    //locationName: "Штиль",
+    //emoji: "🪸",
+    //description: "Чужие стремления и победы никогда не доставляют той же радости, что и свои собственные. А когда ты не можешь спокойно жить и развиваться в своем родном городе, зная, что за каждым поворотом можно встретить горькое напоминание о прошлом, хочется убежать как можно дальше. Особенно когда это самое прошлое так и норовит найти тебя.\n\nС подачки единственного близкого друга, Аркадия сбежала от городской суеты в тихую долину, чтобы найти душевный покой и попытаться построить свою жизнь заново. Получится ли у нее, или старые тревоги окажутся сильнее, покажет только время.",
+    //portraits: ["arkadia"],
+    //parallaxNames: ["Аркадия"],
+    //parallaxPositions: ["center"],
+    //links: {
+        //album: "https://vk.com/album-236063317_309021269",
+        //discussion: "https://vk.com/topic-236063317_57330980",
+        //lore: "https://vk.com/@stardewoc-shtil-arkadiya"
+    //},
+    //cardStyle: "style1-nopar",
+    //parallaxImg: "images/parallax/calm.jpg"
+//},
 "char14": {
     buttonName: "Собачья будка",
     locationName: "Собачья будка",
@@ -291,6 +291,7 @@ const charactersData = {
     links: {
         album: "https://vk.com/album-236063317_310294529",
         discussion: "https://vk.com/topic-236063317_68480110",
+        lore: "https://vk.ru/@stardewoc-beikeri-kekela"
     },
     cardStyle: "style2",
     parallaxImg: "images/parallax/bakery.jpg"
