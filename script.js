@@ -167,7 +167,7 @@ const charactersData = {
     //},
     //cardStyle: "style1",
     //parallaxImg: "images/parallax/dust_farm.jpg"
-},
+//},
 // "char11": {
     // buttonName: "Ферма Дзен",
     // locationName: "Ферма Дзен",
